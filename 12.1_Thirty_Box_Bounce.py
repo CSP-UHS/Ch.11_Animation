@@ -15,3 +15,6 @@ Ball Bounce Program to create the following:
 9.) When the box bounces change its color to the rail it just hit.
 10.)Title the window 30 Boxes
 '''
+SW = 600
+SH = 600
+
