@@ -15,6 +15,53 @@ Ball Bounce Program to create the following:
 9.) When the box bounces change its color to the rail it just hit.
 10.)Title the window 30 Boxes
 '''
+import arcade
+import random
+
 SW = 600
 SH = 600
 
+
+class Box:
+    def __init__(self, pos_x, pos_y, dx, dy, width, height, color):
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.dx = dx
+        self.dy = dy
+        self.width = width
+        self.height = height
+        self.color = color
+
+    def draw_box(self):
+        arcade.draw_rectangle_filled(self.pos_x, self.pos_y, self.width, self.height, self.color)
+
+    def update_box(self):
+        self.pos_y += self.dy
+        self.pos_x += self.dx
+
+        # Bounce off edge of screen
+        if self.pos_x < self.width/2 or self.pos_x > SW - self.width/2:
+            self.dx *= -1
+        if self.pos_y < self.height/2 or self.pos_y > SH - self.height/2:
+            self.dy *= -1
+
+
+class MyGame(arcade.Window):
+    def __init__(self, width, height, title):
+        super().__init__(width, height, title)
+        arcade.set_background_color(arcade.color.ASH_GREY)
+        self.box = Box(320, 240, 5, 5, 50, 50, arcade.color.AUBURN)
+
+    def on_draw(self):
+        arcade.start_render()
+        self.box.draw_box()
+    def on_update(self, dt):
+
+        self.box.update_box()
+
+
+def main():
+    window = MyGame(SW, SH, "Drawing Example")
+    arcade.run()
+
+main()

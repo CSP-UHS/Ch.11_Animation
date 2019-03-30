@@ -6,6 +6,7 @@ screen_height = 720
 fall_speed = 3
 rotation_speed = 2
 
+
 class Snow:
     def __init__(self, x, y, width, height, color, angle):
         self.pos_x = x
@@ -31,7 +32,7 @@ class Snow:
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
-        arcade.set_background_color(arcade.color.ASH_GREY)
+        arcade.set_background_color(arcade.color.GRAY)
         self.snow = Snow(random.randrange(0,1281), 730, 15, 15, arcade.color.SNOW, 45)
 
     def setup(self):
@@ -40,7 +41,9 @@ class MyGame(arcade.Window):
     def on_draw(self):
         arcade.start_render()
         # Put DRAWING CODE HERE
-        self.snow.draw_snow()
+        arcade.draw_rectangle_filled(640, 600, 1280, 600, arcade.color.SKY_BLUE)
+        for i in range(10):
+            self.snow.draw_snow()
 
     def update(self, dt):
         self.snow.update_snow()
