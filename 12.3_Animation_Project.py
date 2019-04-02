@@ -24,4 +24,7 @@ class AnimationProject(arcade.Window):
 def main():
 	AnimationProject(screen_width, screen_height, "12.3 Animation Project")
 	arcade.run()
-main()
+
+
+if __name__ == "__main__":
+	main()
