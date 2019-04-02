@@ -5,7 +5,7 @@ screen_width = 1280
 screen_height = 720
 fall_speed = 3
 rotation_speed = 2
-
+sprite_list = []
 
 class Snow:
     def __init__(self, x, y, width, height, color, angle):
@@ -24,7 +24,7 @@ class Snow:
         self.pos_x += 0
         self.angle += rotation_speed
 
-        # Teleports the snow to the top if it reaches the bottom
+        # Teleport the snow to the top if it reaches the bottom
         if self.pos_y <= screen_height-screen_height-100:
             self.pos_y = screen_height + 10
 
@@ -33,7 +33,9 @@ class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.GRAY)
-        self.snow = Snow(random.randrange(0,1281), 730, 15, 15, arcade.color.SNOW, 45)
+        for i in range(10):
+            sprite_list.append(i)
+            self.snow = Snow(random.randrange(0,1281), 730, 15, 15, arcade.color.SNOW, 45)
 
     def setup(self):
         pass

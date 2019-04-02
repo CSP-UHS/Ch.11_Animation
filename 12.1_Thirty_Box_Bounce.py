@@ -20,6 +20,7 @@ import random
 
 SW = 600
 SH = 600
+number_of_boxes = 30
 
 
 class Rectangle:
@@ -57,27 +58,35 @@ class Box:
         self.pos_y += self.dy
         self.pos_x += self.dx
 
-        # Bounce off edge of screen
-        if self.pos_x < self.width/2 or self.pos_x > SW - self.width/2:
+        # Bounce off edge of screen & Change Color
+        if self.pos_x < (self.width/2) + 30:  # Block Left
             self.dx *= -1
-        if self.pos_y < self.height/2 or self.pos_y > SH - self.height/2:
+            self.color = arcade.color.RED
+        if self.pos_x > SW - 30 - self.width/2:  # Block Right
+            self.dx *= -1
+            self.color = arcade.color.PURPLE
+        if self.pos_y < self.height/2 + 30:  # Block Bottom
             self.dy *= -1
+            self.color = arcade.color.ORANGE
+        if self.pos_y > SH - 30 - self.height/2:  # Block Top
+            self.dy *= -1
+            self.color = arcade.color.BLUE
 
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
-        arcade.set_background_color(arcade.color.ASH_GREY)
+        arcade.set_background_color(arcade.color.WHITE)
         self.boxlist=[]
         self.rectanglelist = []
-        self.rectanglelist.append(Rectangle(15, 300, 30, 600, arcade.color.RED))
-        self.rectanglelist.append(Rectangle(300, 15, 600, 30, arcade.color.RED))
-        self.rectanglelist.append(Rectangle(585, 300, 30, 600, arcade.color.RED))
-        self.rectanglelist.append(Rectangle(300, 585, 600, 30, arcade.color.RED))
-
-        for i in range(30):
-            size = random.randrange(10,50)
-            self.box = Box(random.randrange(50,550), random.randrange(50,550), 5, 5, size, size, arcade.color.AUBURN)
+        self.rectanglelist.append(Rectangle(15, 300, 30, 540, arcade.color.RED))  # Left
+        self.rectanglelist.append(Rectangle(585, 300, 30, 540, arcade.color.PURPLE))  # Right
+        self.rectanglelist.append(Rectangle(300, 15, 540, 30, arcade.color.ORANGE))  # Bottom
+        self.rectanglelist.append(Rectangle(300, 585, 540, 30, arcade.color.BLUE))  # Top
+        for i in range(number_of_boxes):
+            size = random.randrange(10, 50)
+            self.box = Box(random.randrange(50, 560), random.randrange(50, 560), random.randrange(-10, 10),
+                           random.randrange(-10, 10), size, size, arcade.color.AUBURN)
             self.boxlist.append(self.box)
 
     def on_draw(self):
@@ -92,9 +101,8 @@ class MyGame(arcade.Window):
             self.box.update_box()
 
 
-
 def main():
-    window = MyGame(SW, SH, "Thirty Box Bounce")
+    window = MyGame(SW, SH, "30 Boxes")
     arcade.run()
 
 
