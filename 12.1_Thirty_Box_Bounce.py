@@ -34,12 +34,6 @@ class Rectangle:
     def draw_rectangle(self):
         arcade.draw_rectangle_filled(self.pos_x, self.pos_y, self.width, self.height, self.color)
 
-    def hit(self):
-        pass
-
-    def update_rectangle(self):
-        pass
-
 
 class Box:
     def __init__(self, pos_x, pos_y, dx, dy, width, height, color):
