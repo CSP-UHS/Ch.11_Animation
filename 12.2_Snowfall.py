@@ -18,6 +18,7 @@ the following requirements:
 
 '''
 import arcade
+import random
 
 screen_width = 600
 screen_height = 600
@@ -25,17 +26,20 @@ snowflakes = 300
 
 
 class Snowflake:
-	def __init__(self, pos_x, pos_y, radius, color):
+	def __init__(self, pos_x, pos_y, radius, color, fall_speed):
 		self.pos_x = pos_x
 		self.pos_y = pos_y
 		self.radius = radius
 		self.color = color
+		self.fall_speed = fall_speed
 
 	def draw_snow(self):
 		arcade.draw_circle_filled(self.pos_x, self.pos_y, self.radius, self.color)
 
 	def update_snow(self):
-		pass  # Logic
+		self.pos_y -= self.fall_speed
+		if self.pos_y < screen_height - screen_height - 5:
+			self.pos_y = screen_height + random.randrange(0, 100)
 
 
 class Snowfall(arcade.Window):
@@ -43,17 +47,25 @@ class Snowfall(arcade.Window):
 		super().__init__(width, height, title)
 		arcade.set_background_color(arcade.color.BLACK)
 		self.snowflakelist = []
+		self.snowflakelist.append(Snowflake(random.randrange(0, screen_width), random.randrange(0, screen_height), 3, arcade.color.RED, random.randrange(1, 5)))
 		for i in range(snowflakes):
-			self.snowflake = Snowflake(300, 300, 3, arcade.color.RED)
+			self.snowflake = Snowflake(random.randrange(0, screen_width), random.randrange(0, screen_height), 3, arcade.color.WHITE, random.randrange(1, 5))
+
 			self.snowflakelist.append(self.snowflake)
 
 	def on_draw(self):
 		arcade.start_render()
+		for self.snowflake in self.snowflakelist:
+			self.snowflake.draw_snow()
+		arcade.draw_rectangle_filled(screen_width / 2, screen_height / 2, screen_width, 10, arcade.color.BRONZE)
+		arcade.draw_rectangle_filled(screen_width / 2, screen_height / 2, 10, screen_height, arcade.color.BRONZE)
 
 	def update(self, dt):
-		self.snowflake.update_snow()
+		for self.snowflake in self.snowflakelist:
+			self.snowflake.update_snow()
 
 
 def main():
 	Snowfall(screen_width, screen_height, "Snowfall")
+	arcade.run()
 main()
