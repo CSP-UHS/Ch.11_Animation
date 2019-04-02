@@ -37,8 +37,10 @@ class Snowflake:
 		arcade.draw_circle_filled(self.pos_x, self.pos_y, self.radius, self.color)
 
 	def update_snow(self):
+		# Makes snow fall
 		self.pos_y -= self.fall_speed
-		if self.pos_y < screen_height - screen_height - 5:
+		# Teleports snow to top
+		if self.pos_y < - 5:
 			self.pos_y = screen_height + random.randrange(0, 100)
 
 
@@ -47,9 +49,11 @@ class Snowfall(arcade.Window):
 		super().__init__(width, height, title)
 		arcade.set_background_color(arcade.color.BLACK)
 		self.snowflakelist = []
-		self.snowflakelist.append(Snowflake(random.randrange(0, screen_width), random.randrange(0, screen_height), 3, arcade.color.RED, random.randrange(1, 5)))
+		self.snowflakelist.append(Snowflake(random.randrange(0, screen_width), random.randrange(0, screen_height),
+											3, arcade.color.RED, random.randrange(1, 5)))
 		for i in range(snowflakes):
-			self.snowflake = Snowflake(random.randrange(0, screen_width), random.randrange(0, screen_height), 3, arcade.color.WHITE, random.randrange(1, 5))
+			self.snowflake = Snowflake(random.randrange(0, screen_width), random.randrange(0, screen_height),
+									   		3, arcade.color.WHITE, random.randrange(1, 5))
 
 			self.snowflakelist.append(self.snowflake)
 
