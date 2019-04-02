@@ -17,3 +17,43 @@ the following requirements:
 
 
 '''
+import arcade
+
+screen_width = 600
+screen_height = 600
+snowflakes = 300
+
+
+class Snowflake:
+	def __init__(self, pos_x, pos_y, radius, color):
+		self.pos_x = pos_x
+		self.pos_y = pos_y
+		self.radius = radius
+		self.color = color
+
+	def draw_snow(self):
+		arcade.draw_circle_filled(self.pos_x, self.pos_y, self.radius, self.color)
+
+	def update_snow(self):
+		pass  # Logic
+
+
+class Snowfall(arcade.Window):
+	def __init__(self, width, height, title):
+		super().__init__(width, height, title)
+		arcade.set_background_color(arcade.color.BLACK)
+		self.snowflakelist = []
+		for i in range(snowflakes):
+			self.snowflake = Snowflake(300, 300, 3, arcade.color.RED)
+			self.snowflakelist.append(self.snowflake)
+
+	def on_draw(self):
+		arcade.start_render()
+
+	def update(self, dt):
+		self.snowflake.update_snow()
+
+
+def main():
+	Snowfall(screen_width, screen_height, "Snowfall")
+main()

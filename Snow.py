@@ -7,6 +7,7 @@ fall_speed = 3
 rotation_speed = 2
 sprite_list = []
 
+
 class Snow:
     def __init__(self, x, y, width, height, color, angle):
         self.pos_x = x
