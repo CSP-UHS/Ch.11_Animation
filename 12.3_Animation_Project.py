@@ -8,9 +8,10 @@ import arcade
 
 screen_height = 600
 screen_width = 600
+amount_stars = 1
 
 
-class Rectangle:
+class Star:
 	def __init__(self, pos_x, pos_y, width, height, color, rotate):
 		self.pos_x = pos_x
 		self.pos_y = pos_y
@@ -19,30 +20,28 @@ class Rectangle:
 		self.color = color
 		self.rotate = rotate
 
-	def draw_rectangle(self):
+	def draw_star(self):
 		arcade.draw_rectangle_filled(self.pos_x, self.pos_y, self.width, self.height, self.color, self.rotate)
 
-	def update_rectangle(self):
-		# Logic goes here
-		pass
+	def update_star(self):
+		self.pos_y -= 1
 
 
 class AnimationProject(arcade.Window):
 	def __init__(self, width, height, title):
 		super().__init__(width, height, title)
-		self.rectangle_list = []
-		for i in range(10):
-			self.rectangle = Rectangle(screen_width/2, screen_height-15, screen_width, 30, arcade.color.PURPLE)
-			self.rectangle_list.append(self.rectangle)
+		self.star_list = []
+		for i in range(amount_stars):
+			self.star = Star(screen_width/2, screen_height/2, 15, 30, arcade.color.PURPLE, 0)
+			self.star_list.append(self.star)
 
 	def on_draw(self):
-		for self.rectangle in self.rectangle_list:
-			self.rectangle.draw_rectangle()
+		for self.star in self.star_list:
+			self.star.draw_star()
 
 	def update(self, dt):
-		pass
-		for self.rectangle in self.rectangle_list:
-			self.rectangle.update_rectangle()
+		for self.star in self.star_list:
+			self.star.update_star()
 
 
 def main():
