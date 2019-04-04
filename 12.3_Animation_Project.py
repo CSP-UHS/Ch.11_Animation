@@ -8,7 +8,7 @@ import arcade
 
 screen_height = 600
 screen_width = 600
-amount_stars = 1
+amount_stars = 5
 
 
 class Star:

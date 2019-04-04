@@ -22,7 +22,7 @@ import random
 
 screen_width = 600
 screen_height = 600
-snowflakes = 300
+snowflakes = 600
 
 
 class Snowflake:
@@ -42,6 +42,7 @@ class Snowflake:
 		# Teleports snow to top
 		if self.pos_y < - 5:
 			self.pos_y = screen_height + random.randrange(0, 100)
+			self.pos_x = random.randrange(0, screen_width)
 
 
 class Snowfall(arcade.Window):

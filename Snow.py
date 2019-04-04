@@ -1,55 +1,55 @@
 import arcade
 import random
 
-screen_width = 1280
-screen_height = 720
-fall_speed = 3
-rotation_speed = 2
+screen_width = 600
+screen_height = 600
 sprite_list = []
+number_of_snow = 100
 
 
 class Snow:
-    def __init__(self, x, y, width, height, color, angle):
+    def __init__(self, x, y, width, height, color, angle, fall_speed):
         self.pos_x = x
         self.pos_y = y
         self.height = height
         self.width = width
         self.color = color
         self.angle = angle
+        self.fall_speed = fall_speed
 
     def draw_snow(self):
         arcade.draw_rectangle_filled(self.pos_x, self.pos_y, self.width, self.height, self.color, self.angle)
 
     def update_snow(self):
-        self.pos_y -= fall_speed
-        self.pos_x += 0
-        self.angle += rotation_speed
+        self.pos_y -= self.fall_speed
+        self.angle += random.randrange(1,5)
 
-        # Teleport the snow to the top if it reaches the bottom
+        # Teleports the snow to the top if it reaches the bottom
         if self.pos_y <= screen_height-screen_height-100:
             self.pos_y = screen_height + 10
+            self.pos_x = random.randrange(0, screen_width)
 
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.GRAY)
-        for i in range(10):
-            sprite_list.append(i)
-            self.snow = Snow(random.randrange(0,1281), 730, 15, 15, arcade.color.SNOW, 45)
-
-    def setup(self):
-        pass
+        self.snowlist = []
+        for i in range(number_of_snow):
+            size = random.randrange(5,10)
+            self.snow = Snow(random.randrange(0,1281), random.randrange(0,screen_height+200), size, size, arcade.color.SNOW, 45, random.randrange(1,3))
+            self.snowlist.append(self.snow)
 
     def on_draw(self):
         arcade.start_render()
         # Put DRAWING CODE HERE
-        arcade.draw_rectangle_filled(640, 600, 1280, 600, arcade.color.SKY_BLUE)
-        for i in range(10):
+        arcade.draw_rectangle_filled(screen_width, screen_height-100, 1280, 600, arcade.color.SKY_BLUE)
+        for self.snow in self.snowlist:
             self.snow.draw_snow()
 
     def update(self, dt):
-        self.snow.update_snow()
+        for self.snow in self.snowlist:
+            self.snow.update_snow()
 
 
 def main():

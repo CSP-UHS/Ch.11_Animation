@@ -70,7 +70,7 @@ class Box:
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
-        arcade.set_background_color(arcade.color.WHITE)
+        arcade.set_background_color(arcade.color.BLACK)
         self.boxlist=[]
         self.rectanglelist = []
         self.rectanglelist.append(Rectangle(15, 300, 30, 540, arcade.color.RED))  # Left
@@ -79,8 +79,8 @@ class MyGame(arcade.Window):
         self.rectanglelist.append(Rectangle(300, 585, 540, 30, arcade.color.BLUE))  # Top
         for i in range(number_of_boxes):
             size = random.randrange(10, 50)
-            self.box = Box(random.randrange(50, 560), random.randrange(50, 560), random.randrange(-10, 10),
-                           random.randrange(-10, 10), size, size, arcade.color.AUBURN)
+            self.box = Box(random.randrange(50, 550), random.randrange(50, 550), random.randrange(-11, 11),
+                           random.randrange(-11, 11), size, size, arcade.color.BLUE)
             self.boxlist.append(self.box)
 
     def on_draw(self):
