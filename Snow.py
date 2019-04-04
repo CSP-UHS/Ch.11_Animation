@@ -22,7 +22,7 @@ class Snow:
 
     def update_snow(self):
         self.pos_y -= self.fall_speed
-        self.angle += random.randrange(1,5)
+        self.angle += random.randrange(1, 5)
 
         # Teleports the snow to the top if it reaches the bottom
         if self.pos_y <= screen_height-screen_height-100:
@@ -36,14 +36,14 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.GRAY)
         self.snowlist = []
         for i in range(number_of_snow):
-            size = random.randrange(5,10)
-            self.snow = Snow(random.randrange(0,1281), random.randrange(0,screen_height+200), size, size, arcade.color.SNOW, 45, random.randrange(1,3))
+            size = random.randrange(5, 10)
+            self.snow = Snow(random.randrange(0, 1281), random.randrange(0, screen_height+200), size, size,
+                             arcade.color.SNOW, 45, random.randrange(1, 3))
             self.snowlist.append(self.snow)
 
     def on_draw(self):
         arcade.start_render()
         # Put DRAWING CODE HERE
-        arcade.draw_rectangle_filled(screen_width, screen_height-100, 1280, 600, arcade.color.SKY_BLUE)
         for self.snow in self.snowlist:
             self.snow.draw_snow()
 
@@ -55,4 +55,7 @@ class MyGame(arcade.Window):
 def main():
     MyGame(screen_width, screen_height, "Snowing")
     arcade.run()
-main()
+
+
+if __name__ == "__main__":
+    main()
