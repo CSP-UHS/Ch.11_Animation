@@ -36,13 +36,18 @@ class MyGame(arcade.Window):
         rocket.speed = 200
         self.rocket_list.append(rocket)
 
+    def reset_fire(self):
+        for rocket in self.rocket_list:
+            for fire in self.fire_list:
+                fire.y = rocket.y
+
     def start_fire(self):
         self.fire_list = []
         for i in range(25):
             fire = Fire()
             for rocket in self.rocket_list:
                 fire.y = rocket.y
-                fire.x = rocket.y
+            fire.x = 0
             fire.size = random.randrange(1, 40)
             fire.speed = 200
             fire.angle = random.uniform(math.pi, math.pi * 2)
@@ -66,16 +71,17 @@ class MyGame(arcade.Window):
         for rocket in self.rocket_list:
             #  Move the rocket up
             rocket.y += rocket.speed * dt
+            self.reset_fire()
             if rocket.y >= SCREEN_HEIGHT+50:
                 rocket.reset_pos()
-            self.start_fire()
-        for fire in self.fire_list:
-            fire.y -= fire.speed * dt
+            for fire in self.fire_list:
+                fire.y -= fire.speed * dt
 
 
 def main():
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     window.start_rocket()
+    window.start_fire()
     arcade.run()
 
 
