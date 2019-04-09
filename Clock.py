@@ -19,9 +19,8 @@ RADIANS_PER_FRAME_2 = RADIANS_PER_FRAME/12
 SWEEP_LENGTH = 250
 
 
-
 def on_draw(delta_time):
-    on_draw.angle += RADIANS_PER_FRAME
+    on_draw.angle += (delta_time/60)/12
     on_draw.angle_2 += RADIANS_PER_FRAME_2
 
     # Big Hand
@@ -32,12 +31,12 @@ def on_draw(delta_time):
     y_2 = SWEEP_LENGTH/1.5 * math.cos(on_draw.angle_2) + CENTER_Y
 
     arcade.start_render()
-    arcade.draw_text("XII", CENTER_X - 25, CENTER_Y + 200, arcade.color.WHITE, 36)  # 12
-    arcade.draw_text("VI", CENTER_X - 15, CENTER_Y - 235, arcade.color.WHITE, 36)  # 6
-    arcade.draw_text("IX", CENTER_X - 235, CENTER_Y - 20, arcade.color.WHITE, 36)  # 9
-    arcade.draw_text("III", CENTER_X + 200, CENTER_Y - 20, arcade.color.WHITE, 36)  # 3
-    arcade.draw_line(CENTER_X, CENTER_Y, x, y, arcade.color.OLIVE, 4)
-    arcade.draw_line(CENTER_X, CENTER_Y, x_2, y_2, arcade.color.GRAY, 4)
+    arcade.draw_text("12", CENTER_X - 25, CENTER_Y + 200, arcade.color.WHITE, 36)  # 12
+    arcade.draw_text("6", CENTER_X - 15, CENTER_Y - 235, arcade.color.WHITE, 36)  # 6
+    arcade.draw_text("9", CENTER_X - 235, CENTER_Y - 20, arcade.color.WHITE, 36)  # 9
+    arcade.draw_text("3", CENTER_X + 200, CENTER_Y - 20, arcade.color.WHITE, 36)  # 3
+    arcade.draw_line(CENTER_X, CENTER_Y, x, y, arcade.color.OLIVE, 8)
+    arcade.draw_line(CENTER_X, CENTER_Y, x_2, y_2, arcade.color.GRAY, 8)
     arcade.draw_circle_outline(CENTER_X, CENTER_Y, SWEEP_LENGTH,
                                arcade.color.DARK_GREEN, 10)
     print(on_draw.angle)
@@ -46,8 +45,10 @@ def on_draw(delta_time):
 hour = time.strftime("%I")
 minute = time.strftime("%M")
 second = time.strftime(".%S")
-on_draw.angle_2 = float(hour) * .5
-on_draw.angle = float(second) + float(minute) * .001
+if float(hour) == 12:
+    hour = "11"
+on_draw.angle_2 = float(hour) * .569
+on_draw.angle = float(minute) + (float(second)/60) * .105
 numbers = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
 
 
