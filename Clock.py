@@ -14,7 +14,7 @@ SCREEN_TITLE = "Radar Sweep Example"
 
 CENTER_X = SCREEN_WIDTH // 2
 CENTER_Y = SCREEN_HEIGHT // 2
-RADIANS_PER_FRAME = 0.01
+RADIANS_PER_FRAME = .00020833
 RADIANS_PER_FRAME_2 = RADIANS_PER_FRAME/12
 SWEEP_LENGTH = 250
 
@@ -40,20 +40,21 @@ def on_draw(delta_time):
     arcade.draw_line(CENTER_X, CENTER_Y, x_2, y_2, arcade.color.GRAY, 4)
     arcade.draw_circle_outline(CENTER_X, CENTER_Y, SWEEP_LENGTH,
                                arcade.color.DARK_GREEN, 10)
-    print(on_draw.angle_2)
+    print(on_draw.angle)
 
 
 hour = time.strftime("%I")
 minute = time.strftime("%M")
+second = time.strftime(".%S")
 on_draw.angle_2 = float(hour) * .5
-on_draw.angle = float(minute) * .5
+on_draw.angle = float(second) + float(minute) * .001
 numbers = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
 
 
 def main():
     arcade.open_window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     arcade.set_background_color(arcade.color.BLACK)
-    arcade.schedule(on_draw, 1 / 80)
+    arcade.schedule(on_draw, 1 / 60)
     arcade.run()
     arcade.close_window()
 
