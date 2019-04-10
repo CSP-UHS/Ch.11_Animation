@@ -31,14 +31,16 @@ def on_draw(delta_time):
     y_2 = SWEEP_LENGTH/1.5 * math.cos(on_draw.angle_2) + CENTER_Y
 
     arcade.start_render()
+    arcade.draw_circle_filled(CENTER_X, CENTER_Y, SWEEP_LENGTH, arcade.color.BLACK)
     arcade.draw_text("12", CENTER_X - 25, CENTER_Y + 200, arcade.color.WHITE, 36)  # 12
     arcade.draw_text("6", CENTER_X - 15, CENTER_Y - 235, arcade.color.WHITE, 36)  # 6
     arcade.draw_text("9", CENTER_X - 235, CENTER_Y - 20, arcade.color.WHITE, 36)  # 9
     arcade.draw_text("3", CENTER_X + 200, CENTER_Y - 20, arcade.color.WHITE, 36)  # 3
     arcade.draw_line(CENTER_X, CENTER_Y, x, y, arcade.color.OLIVE, 8)
     arcade.draw_line(CENTER_X, CENTER_Y, x_2, y_2, arcade.color.GRAY, 8)
+
     arcade.draw_circle_outline(CENTER_X, CENTER_Y, SWEEP_LENGTH,
-                               arcade.color.DARK_GREEN, 10)
+                               arcade.color.BLUE, 10)
     print(on_draw.angle)
 
 
@@ -55,7 +57,7 @@ numbers = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
 
 def main():
     arcade.open_window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    arcade.set_background_color(arcade.color.BLACK)
+    arcade.set_background_color(arcade.color.GRAY)
     arcade.schedule(on_draw, 1 / 60)
     arcade.run()
     arcade.close_window()
