@@ -47,8 +47,9 @@ minute = time.strftime("%M")
 second = time.strftime(".%S")
 if float(hour) == 12:
     hour = "11"
-on_draw.angle_2 = float(hour) * .569
-on_draw.angle = float(minute) + (float(second)/60) * .105
+    #  BUG = Hour hand move based on minute and not seconds
+on_draw.angle_2 = float(hour) * .57
+on_draw.angle = float(minute) * .105
 numbers = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
 
 
