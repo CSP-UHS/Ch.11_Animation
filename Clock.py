@@ -17,21 +17,6 @@ class Hand:
         self.y = 0
 
 
-def hands():
-    hands_list = []
-    place = 0
-    for i in range(12):
-        hand = Hand()
-        hand.x_hands = (SWEEP_LENGTH-5) * math.sin(place) + CENTER_X
-        hand.y_hands = (SWEEP_LENGTH-5) * math.cos(place) + CENTER_Y
-        hand.x2_hands = -SWEEP_LENGTH / 8 * math.sin(place) + hand.x_hands
-        hand.y2_hands = -SWEEP_LENGTH / 8 * math.cos(place) + hand.y_hands
-        hands_list.append(hand)
-        place += 6.282/12
-    for hand in hands_list:
-        arcade.draw_line(hand.x_hands, hand.y_hands, hand.x2_hands, hand.y2_hands, arcade.color.BLACK, 8)
-
-
 def on_draw(dt):
     x_minute = SWEEP_LENGTH * math.sin(on_draw.minute) + CENTER_X
     y_minute = SWEEP_LENGTH * math.cos(on_draw.minute) + CENTER_Y
@@ -45,6 +30,7 @@ def on_draw(dt):
     arcade.start_render()
     # Creates clock background
     arcade.draw_circle_filled(CENTER_X, CENTER_Y, SWEEP_LENGTH, arcade.color.WHITE)
+    hands()
     # Creates time things
     #arcade.draw_text("XII", CENTER_X - 25, CENTER_Y + 200, arcade.color.BLACK, 36)  # 12
     #arcade.draw_text("VI", CENTER_X - 22, CENTER_Y - 235, arcade.color.BLACK, 36)  # 6
@@ -68,13 +54,26 @@ def on_draw(dt):
     on_draw.hour = (6.282 / 12) * float(time.strftime("%I")) + on_draw.minute / 10
     on_draw.minute = (6.282 / 60) * float(time.strftime("%M")) + on_draw.second / 60
 
-    hands()
-
 
 # Calculates where the hands should be based on the time at the beginning
 on_draw.second = (6.282/60) * float(time.strftime("%S"))
 on_draw.minute = (6.282/60) * float(time.strftime("%M")) + on_draw.second / 60
 on_draw.hour = (6.282/12) * float(time.strftime("%I")) + on_draw.minute / 10
+
+
+def hands():
+    hands_list = []
+    place = 0
+    for i in range(12):
+        hand = Hand()
+        hand.x_hands = (SWEEP_LENGTH-5) * math.sin(place) + CENTER_X
+        hand.y_hands = (SWEEP_LENGTH-5) * math.cos(place) + CENTER_Y
+        hand.x2_hands = -SWEEP_LENGTH / 8 * math.sin(place) + hand.x_hands
+        hand.y2_hands = -SWEEP_LENGTH / 8 * math.cos(place) + hand.y_hands
+        hands_list.append(hand)
+        place += 6.282/12
+    for hand in hands_list:
+        arcade.draw_line(hand.x_hands, hand.y_hands, hand.x2_hands, hand.y2_hands, arcade.color.BLACK, 8)
 
 
 def main():
