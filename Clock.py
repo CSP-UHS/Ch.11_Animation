@@ -22,12 +22,14 @@ def hands():
     place = 0
     for i in range(12):
         hand = Hand()
-        hand.x_hands = SWEEP_LENGTH / 4 * math.sin(place) + CENTER_X
-        hand.y_hands = SWEEP_LENGTH / 4 * math.cos(place) + CENTER_Y
+        hand.x_hands = SWEEP_LENGTH * math.sin(place) + CENTER_X
+        hand.y_hands = SWEEP_LENGTH * math.cos(place) + CENTER_Y
+        hand.x2_hands = -SWEEP_LENGTH / 4 * math.sin(place) + hand.x_hands
+        hand.y2_hands = -SWEEP_LENGTH / 4 * math.cos(place) + hand.y_hands
         hands_list.append(hand)
         place += 6.282/12
     for hand in hands_list:
-        arcade.draw_line(CENTER_X, CENTER_Y, hand.x_hands, hand.y_hands, arcade.color.BLACK)
+        arcade.draw_line(hand.x_hands, hand.y_hands, hand.x2_hands, hand.y2_hands, arcade.color.BROWN_NOSE, 8)
 
 
 def on_draw(dt):
@@ -44,10 +46,10 @@ def on_draw(dt):
     # Creates clock background
     arcade.draw_circle_filled(CENTER_X, CENTER_Y, SWEEP_LENGTH, arcade.color.WHITE)
     # Creates time things
-    arcade.draw_text("XII", CENTER_X - 25, CENTER_Y + 200, arcade.color.BLACK, 36)  # 12
-    arcade.draw_text("VI", CENTER_X - 22, CENTER_Y - 235, arcade.color.BLACK, 36)  # 6
-    arcade.draw_text("IX", CENTER_X - 235, CENTER_Y - 15, arcade.color.BLACK, 36)  # 9
-    arcade.draw_text("III", CENTER_X + 200, CENTER_Y - 15, arcade.color.BLACK, 36)  # 3
+    #arcade.draw_text("XII", CENTER_X - 25, CENTER_Y + 200, arcade.color.BLACK, 36)  # 12
+    #arcade.draw_text("VI", CENTER_X - 22, CENTER_Y - 235, arcade.color.BLACK, 36)  # 6
+    #arcade.draw_text("IX", CENTER_X - 235, CENTER_Y - 15, arcade.color.BLACK, 36)  # 9
+    #arcade.draw_text("III", CENTER_X + 200, CENTER_Y - 15, arcade.color.BLACK, 36)  # 3
     # Creates clocks hands
     arcade.draw_line(CENTER_X, CENTER_Y, x_minute, y_minute, arcade.color.RED, 12)
     arcade.draw_line(CENTER_X, CENTER_Y, x_hour, y_hour, arcade.color.BLUE, 10)
