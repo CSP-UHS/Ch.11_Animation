@@ -4,11 +4,30 @@ import math
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Alex's Live Clock!"
+SCREEN_TITLE = "Clock"
 
 CENTER_X = SCREEN_WIDTH // 2
 CENTER_Y = SCREEN_HEIGHT // 2
 SWEEP_LENGTH = 250
+
+
+class Hand:
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+
+
+def hands():
+    hands_list = []
+    place = 0
+    for i in range(12):
+        hand = Hand()
+        hand.x_hands = SWEEP_LENGTH / 4 * math.sin(place) + CENTER_X
+        hand.y_hands = SWEEP_LENGTH / 4 * math.cos(place) + CENTER_Y
+        hands_list.append(hand)
+        place += 6.282/12
+    for hand in hands_list:
+        arcade.draw_line(CENTER_X, CENTER_Y, hand.x_hands, hand.y_hands, arcade.color.BLACK)
 
 
 def on_draw(dt):
@@ -38,13 +57,16 @@ def on_draw(dt):
                                arcade.color.BROWN_NOSE, 10)
     arcade.draw_circle_filled(CENTER_X, CENTER_Y, 10, arcade.color.BLACK)
     # TEST CLOCK
-    clock = str((time.strftime("%I") + time.strftime(":%M:") + time.strftime("%S")))
-    arcade.draw_text(clock, CENTER_X-30, SCREEN_HEIGHT-25, arcade.color.PURPLE)
+    clock = str((time.strftime("%I") + time.strftime(":%M:") + time.strftime("%S") + time.strftime(" %p")))
+    arcade.draw_text(clock, CENTER_X-44, SCREEN_HEIGHT-25, arcade.color.PURPLE)
     arcade.draw_text("Alex's Live Clock!", 50, SCREEN_HEIGHT-50, arcade.color.WHITE, 20)
+
     #  Basic logic for the clock
     on_draw.second = (6.282/60) * float(time.strftime("%S"))
     on_draw.hour = (6.282 / 12) * float(time.strftime("%I")) + on_draw.minute / 10
     on_draw.minute = (6.282 / 60) * float(time.strftime("%M")) + on_draw.second / 60
+
+    hands()
 
 
 # Calculates where the hands should be based on the time at the beginning
