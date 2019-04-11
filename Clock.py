@@ -22,14 +22,14 @@ def hands():
     place = 0
     for i in range(12):
         hand = Hand()
-        hand.x_hands = SWEEP_LENGTH * math.sin(place) + CENTER_X
-        hand.y_hands = SWEEP_LENGTH * math.cos(place) + CENTER_Y
-        hand.x2_hands = -SWEEP_LENGTH / 4 * math.sin(place) + hand.x_hands
-        hand.y2_hands = -SWEEP_LENGTH / 4 * math.cos(place) + hand.y_hands
+        hand.x_hands = (SWEEP_LENGTH-5) * math.sin(place) + CENTER_X
+        hand.y_hands = (SWEEP_LENGTH-5) * math.cos(place) + CENTER_Y
+        hand.x2_hands = -SWEEP_LENGTH / 8 * math.sin(place) + hand.x_hands
+        hand.y2_hands = -SWEEP_LENGTH / 8 * math.cos(place) + hand.y_hands
         hands_list.append(hand)
         place += 6.282/12
     for hand in hands_list:
-        arcade.draw_line(hand.x_hands, hand.y_hands, hand.x2_hands, hand.y2_hands, arcade.color.BROWN_NOSE, 8)
+        arcade.draw_line(hand.x_hands, hand.y_hands, hand.x2_hands, hand.y2_hands, arcade.color.BLACK, 8)
 
 
 def on_draw(dt):
