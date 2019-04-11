@@ -63,6 +63,7 @@ on_draw.hour = (6.282/12) * float(time.strftime("%I")) + on_draw.minute / 10
 
 def hands():
     hands_list = []
+    little_list = []
     place = 0
     for i in range(12):
         hand = Hand()
@@ -72,6 +73,16 @@ def hands():
         hand.y2_hands = -SWEEP_LENGTH / 8 * math.cos(place) + hand.y_hands
         hands_list.append(hand)
         place += 6.282/12
+    for i in range(60):
+        hand_2 = Hand()
+        hand_2.x_hands = (SWEEP_LENGTH - 5) * math.sin(place) + CENTER_X
+        hand_2.y_hands = (SWEEP_LENGTH - 5) * math.cos(place) + CENTER_Y
+        hand_2.x2_hands = -SWEEP_LENGTH / 15 * math.sin(place) + hand_2.x_hands
+        hand_2.y2_hands = -SWEEP_LENGTH / 15 * math.cos(place) + hand_2.y_hands
+        little_list.append(hand_2)
+        place += 6.282 / 60
+    for hand_2 in little_list:
+        arcade.draw_line(hand_2.x_hands, hand_2.y_hands, hand_2.x2_hands, hand_2.y2_hands, arcade.color.BLACK, 2)
     for hand in hands_list:
         arcade.draw_line(hand.x_hands, hand.y_hands, hand.x2_hands, hand.y2_hands, arcade.color.BLACK, 8)
 
