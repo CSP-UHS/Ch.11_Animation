@@ -31,11 +31,6 @@ def on_draw(dt):
     # Creates clock background
     arcade.draw_circle_filled(CENTER_X, CENTER_Y, SWEEP_LENGTH, arcade.color.WHITE)
     hands()
-    # Creates time things
-    #arcade.draw_text("XII", CENTER_X - 25, CENTER_Y + 200, arcade.color.BLACK, 36)  # 12
-    #arcade.draw_text("VI", CENTER_X - 22, CENTER_Y - 235, arcade.color.BLACK, 36)  # 6
-    #arcade.draw_text("IX", CENTER_X - 235, CENTER_Y - 15, arcade.color.BLACK, 36)  # 9
-    #arcade.draw_text("III", CENTER_X + 200, CENTER_Y - 15, arcade.color.BLACK, 36)  # 3
     # Creates clocks hands
     arcade.draw_line(CENTER_X, CENTER_Y, x_minute, y_minute, arcade.color.RED, 12)
     arcade.draw_line(CENTER_X, CENTER_Y, x_hour, y_hour, arcade.color.BLUE, 10)
