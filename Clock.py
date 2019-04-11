@@ -37,13 +37,16 @@ def on_draw(delta_time):
     arcade.draw_circle_outline(CENTER_X, CENTER_Y, SWEEP_LENGTH,
                                arcade.color.BROWN_NOSE, 10)
     arcade.draw_circle_filled(CENTER_X, CENTER_Y, 10, arcade.color.BLACK)
+    # TEST CLOCK
+    clock = str((time.strftime("%I"), time.strftime("%M"), time.strftime("%S")))
+    arcade.draw_text(clock, CENTER_X-30, SCREEN_HEIGHT-25, arcade.color.PURPLE)
     #  Basic logic for the clock
     on_draw.second = (6.282/60) * float(time.strftime("%S"))
     on_draw.hour = (6.282 / 12) * float(time.strftime("%I")) + on_draw.minute / 10
     on_draw.minute = (6.282 / 60) * float(time.strftime("%M")) + on_draw.second / 60
 
 
-# Calculates where the hands should be based on the time at the begining
+# Calculates where the hands should be based on the time at the beginning
 on_draw.second = (6.282/60) * float(time.strftime("%S"))
 on_draw.minute = (6.282/60) * float(time.strftime("%M")) + on_draw.second / 60
 on_draw.hour = (6.282/12) * float(time.strftime("%I")) + on_draw.minute/10
