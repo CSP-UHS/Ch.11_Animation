@@ -4,7 +4,7 @@ import math
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Radar Sweep Example"
+SCREEN_TITLE = "Alex's Live Clock!"
 
 CENTER_X = SCREEN_WIDTH // 2
 CENTER_Y = SCREEN_HEIGHT // 2
@@ -39,7 +39,8 @@ def on_draw(dt):
     arcade.draw_circle_filled(CENTER_X, CENTER_Y, 10, arcade.color.BLACK)
     # TEST CLOCK
     clock = str((time.strftime("%I") + time.strftime(":%M:") + time.strftime("%S")))
-    arcade.draw_text(clock, CENTER_X-50, SCREEN_HEIGHT-25, arcade.color.PURPLE)
+    arcade.draw_text(clock, CENTER_X-30, SCREEN_HEIGHT-25, arcade.color.PURPLE)
+    arcade.draw_text("Alex's Live Clock!", 50, SCREEN_HEIGHT-50, arcade.color.WHITE, 20)
     #  Basic logic for the clock
     on_draw.second = (6.282/60) * float(time.strftime("%S"))
     on_draw.hour = (6.282 / 12) * float(time.strftime("%I")) + on_draw.minute / 10
