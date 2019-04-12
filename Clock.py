@@ -17,7 +17,7 @@ class Hand:
         self.y = 0
 
 
-def on_draw(dt):
+def on_draw(delta_time):
     x_minute = SWEEP_LENGTH * math.sin(on_draw.minute) + CENTER_X
     y_minute = SWEEP_LENGTH * math.cos(on_draw.minute) + CENTER_Y
 
@@ -47,7 +47,7 @@ def on_draw(dt):
     #  Basic logic for the clock
     on_draw.second = (6.282/60) * float(time.strftime("%S"))
     on_draw.hour = (6.282 / 12) * float(time.strftime("%I")) + on_draw.minute / 10
-    on_draw.minute = (6.282 / 60) * float(time.strftime("%M")) + on_draw.second / 60
+    on_draw.minute = (6.282 / 60) * float(time.strftime("%M")) #+ on_draw.second / 60
 
 
 # Calculates where the hands should be based on the time at the beginning
