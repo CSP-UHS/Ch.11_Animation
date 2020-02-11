@@ -1,5 +1,5 @@
 '''
-Sign your name:________________
+Sign your name: Nellie Leaverton
  
 All questions are about the final code in Chapter 12:
 
