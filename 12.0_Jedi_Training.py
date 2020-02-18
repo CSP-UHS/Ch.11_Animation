@@ -1,8 +1,6 @@
 '''
 Sign your name: Nellie Leaverton
- 
 All questions are about the final code in Chapter 12:
-
 1.) Where is the ball's original location?
     self.ball = Ball(320, 240, 3, 2, 15, arcade.color.AUBURN)
 2.) What are the variables dx and dy?
@@ -13,7 +11,7 @@ All questions are about the final code in Chapter 12:
 4.) How many pixels/sec does the ball move in the y-direction?
 
 5.) Which method is run 60 times/second?
-
+    on_draw
 6.) What does this code do?   self.dx *= -1
     change the x direction
 7.) What does this code do?  self.pos_y += self.dy
@@ -21,9 +19,7 @@ All questions are about the final code in Chapter 12:
 8.) What is the width of the window?
     640
 9.) What is this code checking?  self.pos_y > SH - self.rad:
-
+    if the y position s is greater than the width of the window minus the radius
 10.) What is this code checking? if self.pos_x < self.rad
-
-
-
+    if the x positions is smaller than the radius
 '''
