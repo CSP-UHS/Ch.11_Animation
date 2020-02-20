@@ -26,17 +26,45 @@ import arcade
 SW = 600
 SH = 600
 
-# class Ball:
-#     def __init__(self):
+import arcade
+SW = 640
+SH = 480
 
+class Ball:
+    def __init__(self, pos_x, pos_y, dx, dy, rad, col):
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.dx = dx
+        self.dy = dy
+        self.rad = rad
+        self.col = col
 
-# class MyGame(arcade.Window):
-#     def __init__(self, width, height, title, bc ):
-#         super().__init__(width, height, title)
-#         arcade.set_background_color(arcade.color.WHITE)
+    def draw_ball(self):
+        arcade.draw_circle_filled(self.pos_x, self.pos_y, self.rad, self.col)
+    def update_ball(self):
+        self.pos_y += self.dy
+        self.pos_x += self.dx
+        # bounce off edge of screen
+        if self.pos_x < self.rad or self.pos_x > SW - self.rad:
+            self.dx *= -1
+        if self.pos_y < self.rad or self.pos_y > SH - self.rad:
+            self.dy *= -1
+
+class MyGame(arcade.Window):
+    def __init__(self, width, height, title):
+        super().__init__(width, height, title)
+        arcade.set_background_color(arcade.color.ASH_GREY)
+        self.ball = Ball(320, 240, 3, 2, 15, arcade.color.AUBURN)
+
+    def on_draw(self):
+        arcade.start_render()
+        self.ball.draw_ball()
+
+    def on_update(self, dt):
+        self.ball.update_ball()
 
 def main():
-    window = arcade.Window(SW, SH, "30 BOX BOUNCE PROGRAM")
+    window = MyGame(SW, SH, "Drawing Example")
     arcade.run()
 
 main()
