@@ -27,8 +27,8 @@ SW = 600
 SH = 600
 
 import arcade
-SW = 640
-SH = 480
+SW = 600
+SH = 600
 
 class Ball:
     def __init__(self, pos_x, pos_y, dx, dy, rad, col):
