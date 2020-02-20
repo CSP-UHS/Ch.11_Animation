@@ -4,7 +4,7 @@
 You will want to incorporate lists to modify the
 Ball Bounce Program to create the following:
 
-1.) Screen size 600 x 600
+    1.) Screen size 600 x 600
 2.) Draw four 30px wide side rails on all four sides of the window
 3.) Make each side rail a different color.
 4.) Draw 30 black boxes(squares) of random size from 10-50 pixels
@@ -22,3 +22,21 @@ Helpful Hints:
 4.) Also in the on_draw section draw the side rails.
 5.) In the on_update section use: for box in self.boxlist: box.update_box()
 '''
+import arcade
+SW = 600
+SH = 600
+
+# class Ball:
+#     def __init__(self):
+
+
+# class MyGame(arcade.Window):
+#     def __init__(self, width, height, title, bc ):
+#         super().__init__(width, height, title)
+#         arcade.set_background_color(arcade.color.WHITE)
+
+def main():
+    window = arcade.Window(SW, SH, "30 BOX BOUNCE PROGRAM")
+    arcade.run()
+
+main()
