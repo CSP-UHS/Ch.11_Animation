@@ -7,9 +7,9 @@ All questions are about the final code in Chapter 12:
     dx = change direction by x
     dy = change direction by y
 3.) How many pixels/sec does the ball move in the x-direction?
-
+    180 pixels/sec
 4.) How many pixels/sec does the ball move in the y-direction?
-
+    120 pixels/sec
 5.) Which method is run 60 times/second?
     on_draw
 6.) What does this code do?   self.dx *= -1
