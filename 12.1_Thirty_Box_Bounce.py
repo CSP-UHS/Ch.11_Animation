@@ -45,17 +45,21 @@ class Ball:
         self.pos_y += self.dy
         self.pos_x += self.dx
         # bounce off edge of screen
-        if self.pos_x < self.rad or self.pos_x > SW - self.rad:
+        if self.pos_x < 30 + self.rad:
             self.dx *= -1
-        if self.pos_y < self.rad or self.pos_y > SH - self.rad:
+        if self.pos_y < 30 + self.rad:
             self.dy *= -1
+        if self.pos_y < 570 + self.rad:
+            self.dy *= -1
+        if self.pos_x < 570 + self.rad:
+            self.dx *= -1
+
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.WHITE)
         self.ball = Ball(320, 240, 3, 2, 15, arcade.color.AUBURN)
-
     def on_draw(self):
         arcade.start_render()
         arcade.draw_lrtb_rectangle_filled(0, 30, 600, 0, arcade.color.LIME_GREEN)
@@ -71,9 +75,7 @@ class MyGame(arcade.Window):
     def on_update(self, dt):
         self.ball.update_ball()
 
-
 def main():
     window = MyGame(SW, SH, "Drawing Example")
     arcade.run()
-
 main()
