@@ -58,10 +58,15 @@ class MyGame(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
+        arcade.draw_lrtb_rectangle_filled(0, 30, 600, 0, arcade.color.BLACK)
+        arcade.draw_lrtb_rectangle_filled(0, 600, 30, 0, arcade.color.BLACK)
+        arcade.draw_lrtb_rectangle_filled(0, 600, 600, 570, arcade.color.BLACK)
+        arcade.draw_lrtb_rectangle_filled(570, 600, 600, 0, arcade.color.BLACK)
         self.ball.draw_ball()
 
     def on_update(self, dt):
         self.ball.update_ball()
+
 
 def main():
     window = MyGame(SW, SH, "Drawing Example")
