@@ -23,12 +23,7 @@ Helpful Hints:
 5.) In the on_update section use: for box in self.boxlist: box.update_box()
 '''
 import arcade
-SW = 600
-SH = 600
-
-import arcade
-SW = 600
-SH = 600
+import random
 
 class box:
     def __init__(self, pos_x, pos_y, dx, dy, rad, col):
@@ -60,7 +55,10 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.WHITE)
         self.ball = box(320, 240, 3, 2, 15, arcade.color.AUBURN)
         self.boxlist = []
-        # for i in range(30):
+        for i in range(30):
+            random.randint(random.randint, random.randint)
+            self.boxlist.append()
+
     def on_draw(self):
         arcade.start_render()
         arcade.draw_lrtb_rectangle_filled(0, 30, 600, 0, arcade.color.LIME_GREEN)
@@ -77,6 +75,8 @@ class MyGame(arcade.Window):
         self.ball.update_ball()
 
 def main():
+    SW = 600
+    SH = 600
     window = MyGame(SW, SH, "Drawing Example")
     arcade.run()
 main()
