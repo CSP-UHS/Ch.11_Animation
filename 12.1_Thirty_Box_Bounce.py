@@ -40,7 +40,7 @@ class box:
         self.col = col
 
     def draw_ball(self):
-        arcade.draw_circle_filled(self.pos_x, self.pos_y, self.rad, self.col)
+        arcade.draw_rectangle_filled(self.pos_x, self.pos_y, self.rad, self.col, )
     def update_ball(self):
         self.pos_y += self.dy
         self.pos_x += self.dx
