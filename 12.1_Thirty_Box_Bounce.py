@@ -30,7 +30,7 @@ import arcade
 SW = 600
 SH = 600
 
-class Box:
+class box:
     def __init__(self, pos_x, pos_y, dx, dy, rad, col):
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -49,21 +49,18 @@ class Box:
             self.dx *= -1
         if self.pos_y < 30 + self.rad:
             self.dy *= -1
-        if self.pos_y < 570 + self.rad:
+        if self.pos_y > 540 + self.rad:
             self.dy *= -1
-        if self.pos_x < 570 + self.rad:
+        if self.pos_x > 540 + self.rad:
             self.dx *= -1
-
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.WHITE)
-        self.rectangle = Box(320, 240, 3, 2, 15, arcade.color.AUBURN)
+        self.ball = box(320, 240, 3, 2, 15, arcade.color.AUBURN)
         self.boxlist = []
-        for i in range(30):
-            Box(10,19),
-
+        # for i in range(30):
     def on_draw(self):
         arcade.start_render()
         arcade.draw_lrtb_rectangle_filled(0, 30, 600, 0, arcade.color.LIME_GREEN)
