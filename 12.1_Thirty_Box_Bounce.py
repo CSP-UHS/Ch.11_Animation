@@ -7,7 +7,7 @@ Ball Bounce Program to create the following:
     1.) Screen size 600 x 600
     2.) Draw four 30px wide side rails on all four sides of the window
     3.) Make each side rail a different color.
-4.) Draw 30 black boxes(squares) of random size from 10-50 pixels
+    4.) Draw 30 black boxes(squares) of random size from 10-50 pixels
 5.) Animate them starting at random speeds from -300 to +300 pixels/second. 
 6.) All boxes must be moving.
 7.) Start all boxes in random positions between the rails.
@@ -56,8 +56,8 @@ class MyGame(arcade.Window):
         self.ball = box(320, 240, 3, 2, 15, arcade.color.AUBURN)
         self.boxlist = []
         for i in range(30):
-            random.randint(random.randint, random.randint)
-            self.boxlist.append()
+            self.box = box(random.randint(250,350), random.randint(250,350), random., self.rad, self.rad,self.col)
+            self.boxlist.append(self.box)
 
     def on_draw(self):
         arcade.start_render()
