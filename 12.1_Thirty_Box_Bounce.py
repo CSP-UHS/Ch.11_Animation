@@ -56,7 +56,7 @@ class MyGame(arcade.Window):
         self.ball = box(320, 240, 3, 2, 15, arcade.color.AUBURN)
         self.boxlist = []
         for i in range(30):
-            self.box = box(random.randint(250,350), random.randint(250,350), random., self.rad, self.rad,self.col)
+            self.box = box(random.randint(250,350), random.randint(250,350), random.randint(4,10), random.randint(5,10), random.randint(10,50), arcade.color.BLACK)
             self.boxlist.append(self.box)
 
     def on_draw(self):
