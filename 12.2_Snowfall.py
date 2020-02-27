@@ -37,13 +37,14 @@ class snow_ball:
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
+        arcade.set_background_color(arcade.color.BLACK)
         self.snowlist = []
         for i in range(300):
             self.snow_ball = snow_ball(random.randint(0, 600),random.randint(0,600),random.randint(-4,1), arcade.color.WHITE)
             self.snowlist.append(self.snow_ball)
 
     def on_draw(self):
-        arcade.set_background_color(arcade.color.BLACK)
+        arcade.start_render()
         arcade.draw_rectangle_filled(300,300,10,600,arcade.color.RED_BROWN) # Y
         arcade.draw_rectangle_filled(300,300,600,10, arcade.color.RED_BROWN) # X
         for item in self.snowlist:
