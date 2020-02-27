@@ -33,7 +33,6 @@ class box:
         self.dy = dy
         self.rad = rad
         self.col = col
-
     def draw_ball(self):
         arcade.draw_rectangle_filled(self.pos_x, self.pos_y, self.rad, self.rad,self.col,)
     def update_ball(self):
@@ -57,7 +56,6 @@ class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.WHITE)
-        self.ball = box(320, 240, 3, 2, 15, arcade.color.AUBURN)
         self.boxlist = []
         for i in range(30):
             self.box = box(random.randint(250,350), random.randint(250,350), random.randint(-10,10), random.randint(-10,10), random.randint(10,50), arcade.color.BLACK)
