@@ -47,6 +47,10 @@ class MyGame(arcade.Window):
         for item in self.snowlist:
             item.draw_ball()
 
+    def on_update(self, dt):
+        for item in self.snowlist:
+            item.update_ball()
+
 def main():
     SH = 600
     SW = 600
