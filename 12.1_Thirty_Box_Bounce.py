@@ -42,12 +42,16 @@ class box:
         # bounce off edge of screen
         if self.pos_x < 30 + self.rad:
             self.dx *= -1
+            self.col = arcade.color.LIME_GREEN
         if self.pos_y < 30 + self.rad:
             self.dy *= -1
+            self.col = arcade.color.PINK
         if self.pos_y > 540 + self.rad:
             self.dy *= -1
+            self.col = arcade.color.PINK
         if self.pos_x > 540 + self.rad:
             self.dx *= -1
+            self.col = arcade.color.LIME_GREEN
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
@@ -69,10 +73,12 @@ class MyGame(arcade.Window):
         arcade.draw_lrtb_rectangle_filled(0, 30, 600, 570, arcade.color.BLACK)
         arcade.draw_lrtb_rectangle_filled(570, 600, 30, 0, arcade.color.BLACK)
         arcade.draw_lrtb_rectangle_filled(570, 600, 600, 570, arcade.color.BLACK)
-        self.ball.draw_ball()
+        for item in self.boxlist:
+            item.draw_ball()
 
     def on_update(self, dt):
-        self.ball.update_ball()
+        for item in self.boxlist:
+            item.update_ball()
 
 def main():
     SW = 600
