@@ -27,8 +27,10 @@ class snow_ball:
         self.pos_y = pos_y
         self.dy = dy
         self.col = col
+
     def draw_ball(self):
         arcade.draw_circle_filled(self.pos_x, self.pos_y, self.radius, self.col)
+
     def update_ball(self):
         self.pos_y += self.dy
 
@@ -43,7 +45,7 @@ class MyGame(arcade.Window):
     def on_draw(self):
         arcade.set_background_color(arcade.color.BLACK)
         arcade.draw_rectangle_filled(300,300,10,600,arcade.color.RED_BROWN) # Y
-        arcade.draw_rectangle_filled(300,300,600,10, arcade.color.RED_BROWN)
+        arcade.draw_rectangle_filled(300,300,600,10, arcade.color.RED_BROWN) # X
         for item in self.snowlist:
             item.draw_ball()
 

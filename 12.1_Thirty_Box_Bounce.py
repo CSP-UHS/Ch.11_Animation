@@ -33,12 +33,13 @@ class box:
         self.dy = dy
         self.rad = rad
         self.col = col
+
     def draw_ball(self):
         arcade.draw_rectangle_filled(self.pos_x, self.pos_y, self.rad, self.rad,self.col,)
+
     def update_ball(self):
         self.pos_y += self.dy
         self.pos_x += self.dx
-        # bounce off edge of screen
         if self.pos_x < 30 + self.rad:
             self.dx *= -1
             self.col = arcade.color.YELLOW
