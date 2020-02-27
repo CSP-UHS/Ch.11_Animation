@@ -44,6 +44,8 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.BLACK)
         arcade.draw_rectangle_filled(300,300,10,600,arcade.color.RED_BROWN) # Y
         arcade.draw_rectangle_filled(300,300,600,10, arcade.color.RED_BROWN)
+        # for item in self.snowlist:
+        #     item.draw_ball()
 
 def main():
     SH = 600
