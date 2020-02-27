@@ -42,16 +42,16 @@ class box:
         # bounce off edge of screen
         if self.pos_x < 30 + self.rad:
             self.dx *= -1
-            self.col = arcade.color.LIME_GREEN
+            self.col = arcade.color.YELLOW
         if self.pos_y < 30 + self.rad:
             self.dy *= -1
-            self.col = arcade.color.PINK
-        if self.pos_y > 540 + self.rad:
+            self.col = arcade.color.GREEN
+        if self.pos_y > 570 - self.rad:
             self.dy *= -1
-            self.col = arcade.color.PINK
-        if self.pos_x > 540 + self.rad:
+            self.col = arcade.color.BLUE
+        if self.pos_x > 570 - self.rad:
             self.dx *= -1
-            self.col = arcade.color.LIME_GREEN
+            self.col = arcade.color.RED
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
@@ -60,15 +60,15 @@ class MyGame(arcade.Window):
         self.ball = box(320, 240, 3, 2, 15, arcade.color.AUBURN)
         self.boxlist = []
         for i in range(30):
-            self.box = box(random.randint(250,350), random.randint(250,350), random.randint(4,10), random.randint(5,10), random.randint(10,50), arcade.color.BLACK)
+            self.box = box(random.randint(250,350), random.randint(250,350), random.randint(-10,10), random.randint(-10,10), random.randint(10,50), arcade.color.BLACK)
             self.boxlist.append(self.box)
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_lrtb_rectangle_filled(0, 30, 600, 0, arcade.color.LIME_GREEN)
-        arcade.draw_lrtb_rectangle_filled(0, 600, 30, 0, arcade.color.PINK)
-        arcade.draw_lrtb_rectangle_filled(0, 600, 600, 570, arcade.color.PINK)
-        arcade.draw_lrtb_rectangle_filled(570, 600, 600, 0, arcade.color.LIME_GREEN)
+        arcade.draw_lrtb_rectangle_filled(0, 30, 600, 0, arcade.color.YELLOW)
+        arcade.draw_lrtb_rectangle_filled(0, 600, 30, 0, arcade.color.GREEN)
+        arcade.draw_lrtb_rectangle_filled(0, 600, 600, 570, arcade.color.BLUE)
+        arcade.draw_lrtb_rectangle_filled(570, 600, 600, 0, arcade.color.RED)
         arcade.draw_lrtb_rectangle_filled(0, 30, 30, 0, arcade.color.BLACK)
         arcade.draw_lrtb_rectangle_filled(0, 30, 600, 570, arcade.color.BLACK)
         arcade.draw_lrtb_rectangle_filled(570, 600, 30, 0, arcade.color.BLACK)
