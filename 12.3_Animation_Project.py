@@ -11,7 +11,7 @@ class star:
         self.radius = random.randint(1, 3)
         self.pos_x = pos_x
         self.pos_y = pos_y
-        elf.dx = dx
+        self.dx = dx
         self.dy = dy
         self.col = col
 
