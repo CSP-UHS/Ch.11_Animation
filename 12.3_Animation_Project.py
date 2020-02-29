@@ -15,11 +15,12 @@ class star:
         self.dy = dy
         self.col = col
 
+    def update_ball(self):
+        self.pos_y += self.dy
+        self.pos_x += self.dx
+
     def draw_ball(self):
         arcade.draw_circle_filled(self.pos_x, self.pos_y, self.radius, self.col)
-
-    def update_ball(self):
-        print("Still in progress")
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
@@ -27,8 +28,8 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.CATALINA_BLUE)
         self.starlist = []
         for i in range(15):
-            self.star = star(random.randint(0, 600), random.randint(600, 400), random.randint(-4, 1), arcade.color.BUBBLES)
-            self.starlist.append(self.snow_ball)
+            self.star = star(random.randint(0, 595), random.randint(400, 595),random.randint(-8,4),random.randint(-10,5), arcade.color.BUBBLES) #put in correct numbers
+            self.starlist.append(self.star)
 
     def on_draw(self):
         arcade.start_render()
@@ -36,12 +37,12 @@ class MyGame(arcade.Window):
         arcade.draw_triangle_filled(100, 200, 300, 400, 600, 200, arcade.color.EBONY) #middle mountian
         arcade.draw_triangle_filled(400, 200, 600, 350, 600, 200, arcade.color.DARK_GRAY)  # right mountian
         arcade.draw_triangle_filled(0,200, 0, 400, 500, 200, arcade.color.DIM_GRAY) #left mountian
-        # for item in self.starlist:
-        #     item.draw_ball()
+        for item in self.starlist:
+            item.draw_ball()
 
-    # def on_update(self, dt):
-    #     for item in self.starlist:
-    #         item.update_ball()
+    def on_update(self, dt):
+        for item in self.starlist:
+            item.update_ball()
 
 
 def main():
