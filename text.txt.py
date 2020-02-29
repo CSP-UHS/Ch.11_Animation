@@ -27,8 +27,8 @@ arcade.open_window(600,600, "lol")
 arcade.set_background_color(arcade.color.WHITE)
 arcade.start_render()
 
-a = random.randint(10,30)
-a2 = random.randint(10,31)
+a = random.randint(10,300)
+a2 = random.randint(10,300)
 my_list = (
     (a, a2),
     (a+2, a2-1),
