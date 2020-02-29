@@ -34,14 +34,14 @@ class star:
             (a, a2),
         )
 
-        arcade.draw_polygon_filled(my_list, arcade.color.BLACK)
+        arcade.draw_polygon_filled(my_list, arcade.color.BUBBLES)
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.CATALINA_BLUE)
         self.starlist = []
-        for i in range(5):
+        for i in range(1):
             self.star = star(random.randint(0, 595), random.randint(400, 595),random.randint(-4,1),random.randint(-4,1), arcade.color.BUBBLES) #put in correct numbers
             self.starlist.append(self.star)
 
