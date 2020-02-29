@@ -59,7 +59,7 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.WHITE)
         self.boxlist = []
         for i in range(30):
-            self.box = box(random.randint(250,350), random.randint(250,350), random.randint(-10,10), random.randint(-10,10), random.randint(10,50), arcade.color.BLACK)
+            self.box = box(random.randint(250,350), random.randint(250,350), random.randint(-10,10), random.randint(-10,10), random.randint(10,50), arcade.color.WHITE)
             self.boxlist.append(self.box)
 
     def on_draw(self):
