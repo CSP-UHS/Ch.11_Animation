@@ -20,14 +20,28 @@ class star:
         self.pos_x += self.dx
 
     def draw_ball(self):
-        arcade.draw_circle_filled(self.pos_x, self.pos_y, self.radius, self.col)
+        a = random.randint(0, 595)
+        a2 = random.randint(400, 595)
+        my_list = (
+            (a, a2),
+            (a + 2, a2 - 1),
+            (a, a2 - 2),
+            (a - 1, a2 - 5),
+            (a - 2, a2 - 2),
+            (a - 4, a2 - 1),
+            (a - 2, a2),
+            (a - 1, a2 + 2),
+            (a, a2),
+        )
+
+        arcade.draw_polygon_filled(my_list, arcade.color.BLACK)
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.CATALINA_BLUE)
         self.starlist = []
-        for i in range(15):
+        for i in range(5):
             self.star = star(random.randint(0, 595), random.randint(400, 595),random.randint(-4,1),random.randint(-4,1), arcade.color.BUBBLES) #put in correct numbers
             self.starlist.append(self.star)
 
