@@ -28,7 +28,7 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.CATALINA_BLUE)
         self.starlist = []
         for i in range(15):
-            self.star = star(random.randint(0, 595), random.randint(400, 595),random.randint(-8,4),random.randint(-10,5), arcade.color.BUBBLES) #put in correct numbers
+            self.star = star(random.randint(0, 595), random.randint(400, 595),random.randint(-4,1),random.randint(-4,1), arcade.color.BUBBLES) #put in correct numbers
             self.starlist.append(self.star)
 
     def on_draw(self):
