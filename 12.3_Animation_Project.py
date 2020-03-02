@@ -10,7 +10,7 @@ SW=600
 
 class Star:
     def __init__(self, pos_x, pos_y, dx, dy, col):
-        self.radius = random.randint(1, 3)
+        self.radius = random.randint(1, 5)
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.dx = dx
@@ -18,10 +18,12 @@ class Star:
         self.col = col
 
     def update_star(self):
-        self.pos_y -= self.dy
+        self.pos_y = -self.pos_x
         self.pos_x += self.dx
 
     def draw_star(self):
+        # arcade.draw_circle_filled(self.pos_x,self.pos_y,self.radius,self.col)
+
         a = random.randint(0, 595)
         a2 = random.randint(400, 595)
         my_list = (
@@ -43,7 +45,7 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.CATALINA_BLUE)
         self.starlist = []
         for i in range(1):
-            self.star = Star(random.randint(0, 595), random.randint(400, 595),1,1, arcade.color.BUBBLES) #put in correct numbers
+            self.star = Star(random.randint(0, 595), random.randint(400, 595) ,1,1, arcade.color.BUBBLES) #put in correct numbers
             self.starlist.append(self.star)
 
     def on_draw(self):
@@ -58,6 +60,7 @@ class MyGame(arcade.Window):
     def on_update(self, dt):
         for item in self.starlist:
             item.update_star()
+
 
 
 def main():
