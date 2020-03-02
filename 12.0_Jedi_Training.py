@@ -2,7 +2,7 @@
 Sign your name: Nellie Leaverton
 All questions are about the final code in Chapter 12:
 1.) Where is the ball's original location?
-    self.ball = Ball(320, 240, 3, 2, 15, arcade.color.AUBURN)
+    320, 240
 2.) What are the variables dx and dy?
     dx = change direction by x
     dy = change direction by y

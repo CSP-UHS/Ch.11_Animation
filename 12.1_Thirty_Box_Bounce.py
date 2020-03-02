@@ -79,9 +79,12 @@ class MyGame(arcade.Window):
         for item in self.boxlist:
             item.update_ball()
 
+
 def main():
     SW = 600
     SH = 600
     window = MyGame(SW, SH, "Drawing Example")
     arcade.run()
+if __name__ == "__main__":
+    main()
 main()

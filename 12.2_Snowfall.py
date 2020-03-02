@@ -59,5 +59,6 @@ def main():
     SW = 600
     window = MyGame(SH,SW, "SnowFall")
     arcade.run()
-
+if __name__== "__main__":
+    main()
 main()

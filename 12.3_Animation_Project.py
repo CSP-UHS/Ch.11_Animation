@@ -44,7 +44,7 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.CATALINA_BLUE)
         self.starlist = []
-        for i in range(1):
+        for i in range(100):
             self.star = Star(random.randint(0, 595), random.randint(400, 595) ,1,1, arcade.color.BUBBLES) #put in correct numbers
             self.starlist.append(self.star)
 
@@ -61,9 +61,9 @@ class MyGame(arcade.Window):
         for item in self.starlist:
             item.update_star()
 
-
-
 def main():
     window = MyGame(SH,SW, "SnowFall")
     arcade.run()
+if __name__== "__main__":
+    main()
 main()
