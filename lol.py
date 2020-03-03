@@ -15,14 +15,14 @@ class Ball:
         arcade.draw_circle_filled(self.pos_x, self.pos_y, self.rad, self.color)
 
     def update_ball(self):
-
+        self.pos_x+= self.dx
+        self.pos_y+=self.dy
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.ALICE_BLUE)
-        self.x = SW/2
-        self.y = SH/2
+        self.ball= Ball(SW/2, SH/2, 3, -2, 3, arcade.color.AFRICAN_VIOLET)
 
     def on_draw(self):
         arcade.start_render()
