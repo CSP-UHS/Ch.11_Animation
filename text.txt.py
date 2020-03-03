@@ -27,8 +27,8 @@ import random
 ############
 import arcade
 import random
-# SH=600
-# SW=600
+SH=600
+SW=600
 #
 # class Star:
 #     def __init__(self, pos_x, pos_y, col):
@@ -89,14 +89,6 @@ import random
 # main()
 
 ###########
-class Ball:
-    def __init__(self, pos_x, pos_y,dx,dy,color):
-        self.pos_x = pos_x
-        self.pos_y = pos_y
-        self.dx = dx
-        self.dy = dy
-        self.color = color
-
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
@@ -109,7 +101,7 @@ class MyGame(arcade.Window):
         arcade.draw_circle_filled(self.x, self.y, 15, arcade.color.BLACK)
 
     def on_update(self, delta_time: float):
-        self.x-=3
+        self.x+=3
         self.y-=3
 
 def main():
