@@ -26,7 +26,7 @@ class MyGame(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_circle_filled(self.x, self.y, 15, arcade.color.BLACK)
+        self.ball.draw_ball()
 
     def on_update(self, delta_time: float):
         self.x-=3
