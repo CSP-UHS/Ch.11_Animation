@@ -18,6 +18,9 @@ class Ball:
         self.pos_x+= self.dx
         self.pos_y+=self.dy
         #Bouncing the ball of of the edges
+            # if self.pos_x >SW + self.rad: ####PAC MAN
+            #     self.pos_x =- self.rad
+
         if self.pos_x < self.rad or self.pos_x > SW - self.rad: #Left and Right
             self.dx*=-1
         if self.pos_y < self.rad or self.pos_y > SH - self.rad: #Top and bottom
