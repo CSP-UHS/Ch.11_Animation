@@ -17,6 +17,11 @@ class Ball:
     def update_ball(self):
         self.pos_x+= self.dx
         self.pos_y+=self.dy
+        #Bouncing the ball of of the edges
+        if self.pos_x < self.rad or self.pos_x > SW - self.rad: #Left and Right
+            self.dx*=-1
+        if self.pos_y < self.rad or self.pos_y > SH - self.rad: #Top and bottom
+            self.dy*=-1
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
@@ -28,7 +33,7 @@ class MyGame(arcade.Window):
         arcade.start_render()
         self.ball.draw_ball()
 
-    def on_update(self, delta_time: float):
+    def on_update(self, dt):
         self.ball.update_ball()
 
 def main():
