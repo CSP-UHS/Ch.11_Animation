@@ -4,8 +4,8 @@ All questions are about the final code in Chapter 12:
 1.) Where is the ball's original location?
     320, 240
 2.) What are the variables dx and dy?
-    dx = change direction by x
-    dy = change direction by y
+    dx = how fast its gonna move in the x pos
+    dy = how fast its gonna move in the y pos
 3.) How many pixels/sec does the ball move in the x-direction?
     180 pixels/sec
 4.) How many pixels/sec does the ball move in the y-direction?

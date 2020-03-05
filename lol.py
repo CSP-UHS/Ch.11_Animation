@@ -8,7 +8,7 @@ class Ball:
         self.pos_y = pos_y
         self.dx = dx
         self.dy = dy
-        self.rad=rad
+        self.rad= rad
         self.color = color
 
     def draw_ball(self):
@@ -22,15 +22,14 @@ class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.ALICE_BLUE)
-        self.ball= Ball(SW/2, SH/2, 3, -2, 3, arcade.color.AFRICAN_VIOLET)
+        self.ball= Ball(SW/2, SH/2, 3, -2, 15, arcade.color.AFRICAN_VIOLET)
 
     def on_draw(self):
         arcade.start_render()
         self.ball.draw_ball()
 
     def on_update(self, delta_time: float):
-        self.x-=3
-        self.y-=3
+        self.ball.update_ball()
 
 def main():
     window= MyGame(SW, SH, "Animation")
