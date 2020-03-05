@@ -40,10 +40,12 @@ class MyGame(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
-        self.ball.draw_ball()
+        for item in self.ball_list:
+            item.draw_ball()
 
     def on_update(self, dt):
-        self.ball.update_ball()
+        for item in self.ball_list:
+            item.update_ball()
 
 def main():
     window= MyGame(SW, SH, "Animation")
