@@ -58,6 +58,11 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.WHITE)
         self.boxlist = []
+        # self.pos_x = random.randint(250,350)
+        # self.pos_y = random.randint(250,350)
+        # self.dx = random.randint(-10,10)
+        # self.dy = random.randint(-10,10)
+        # self.rad = random.randint(10,50)
         for i in range(30):
             self.box = box(random.randint(250,350), random.randint(250,350), random.randint(-10,10), random.randint(-10,10), random.randint(10,50), arcade.color.WHITE)
             self.boxlist.append(self.box)
