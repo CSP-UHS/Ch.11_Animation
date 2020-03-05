@@ -39,11 +39,11 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.BLACK)
         self.snowlist = []
-        # self.pos_x = random.randint(0, 600)
-        # self.pos_y = random.randint(0,600)
-        # self.dy = random.randint(-4,1)
         for i in range(300):
-            self.snow_ball = snow_ball(random.randint(0, 600),random.randint(0,600),random.randint(-4,1), arcade.color.WHITE)
+            self.pos_x = random.randint(0, 600)
+            self.pos_y = random.randint(0,600)
+            self.dy = random.randint(-4,1)
+            self.snow_ball = snow_ball(self.pos_x, self.pos_y, self.dy, arcade.color.WHITE)
             self.snowlist.append(self.snow_ball)
 
     def on_draw(self):
