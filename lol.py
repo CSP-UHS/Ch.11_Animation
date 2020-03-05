@@ -36,6 +36,7 @@ class MyGame(arcade.Window):
             self.dx = random.randint(-2, 2)
             self.dy = random.randint(-2, 2)
             self.ball= Ball(SW/2, SH/2, self.dx, self.dy, 15, arcade.color.AFRICAN_VIOLET)
+            self.ball_list.append(self.ball)
 
     def on_draw(self):
         arcade.start_render()
