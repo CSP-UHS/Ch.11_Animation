@@ -31,9 +31,10 @@ class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.LIGHT_BLUE)
-        self.dx = random.randint(-2,2)
-        self.dy = random.randint(-2,2)
+        self.ball_list = []
         for i in range(10):
+            self.dx = random.randint(-2, 2)
+            self.dy = random.randint(-2, 2)
             self.ball= Ball(SW/2, SH/2, self.dx, self.dy, 15, arcade.color.AFRICAN_VIOLET)
 
     def on_draw(self):

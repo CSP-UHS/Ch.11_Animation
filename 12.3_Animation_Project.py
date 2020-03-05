@@ -44,9 +44,9 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.CATALINA_BLUE)
         self.starlist = []
-        self.pos_x = random.randint(0, 595)
-        self.pos_y = random.randint(400, 595)
         for i in range(100):
+            self.pos_x = random.randint(0, 595)
+            self.pos_y = random.randint(400, 595)
             self.star = Star(self.pos_x, self.pos_y,1,1, arcade.color.BUBBLES) #put in correct numbers
             self.starlist.append(self.star)
 
