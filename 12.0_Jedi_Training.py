@@ -1,6 +1,5 @@
 '''
-Sign your name:________________
- 
+Sign your name: Danny H
 All questions are about the final code in Chapter 12:
 
 1.) Where is the ball's original location?
