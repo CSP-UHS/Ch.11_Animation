@@ -22,3 +22,8 @@ Helpful Hints:
 4.) Also in the on_draw section draw the side rails.
 5.) In the on_update section use: for box in self.boxlist: box.update_box()
 '''
+import arcade
+import random
+SW=600
+SH=600
+arcade.draw_rectangle_filled(500,300,random.randint(10,50),random.randint(10,50),arcade.color.BLACK)
