@@ -22,7 +22,9 @@ All questions are about the final code in Chapter 12:
     640 or SW
 9.) What is this code checking?  self.pos_y > SH - self.rad:
     if the y position s is greater than the width of the window minus the radius
-    checking the top of the screen
+    checking the top of the screen is being hit by the ball
 10.) What is this code checking? if self.pos_x < self.rad
     if the x positions is smaller than the radius
+    checking if the left side of the screen is being hit by the ball
+
 '''
