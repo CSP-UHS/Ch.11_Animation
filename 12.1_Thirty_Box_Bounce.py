@@ -24,6 +24,8 @@ Helpful Hints:
 '''
 import arcade
 import random
+SW = 600
+SH = 600
 
 class box:
     def __init__(self, pos_x, pos_y, dx, dy, rad, col):
@@ -40,16 +42,16 @@ class box:
     def update_ball(self):
         self.pos_y += self.dy
         self.pos_x += self.dx
-        if self.pos_x < 30 + self.rad:
+        if self.pos_x < 30 + self.rad/2+1:
             self.dx *= -1
             self.col = arcade.color.YELLOW
-        if self.pos_y < 30 + self.rad:
+        if self.pos_y < 30 + self.rad/2+1:
             self.dy *= -1
             self.col = arcade.color.GREEN
-        if self.pos_y > 570 - self.rad:
+        if self.pos_y > 569 - self.rad/2:
             self.dy *= -1
             self.col = arcade.color.BLUE
-        if self.pos_x > 570 - self.rad:
+        if self.pos_x > 569 - self.rad/2:
             self.dx *= -1
             self.col = arcade.color.RED
 
@@ -86,8 +88,6 @@ class MyGame(arcade.Window):
 
 
 def main():
-    SW = 600
-    SH = 600
     window = MyGame(SW, SH, "Drawing Example")
     arcade.run()
 if __name__ == "__main__":

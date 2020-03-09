@@ -14,8 +14,10 @@ All questions are about the final code in Chapter 12:
     update_ball
 6.) What does this code do?   self.dx *= -1
     change the x direction by -1 every 1/60 second
+    changes the direction to oppisit
 7.) What does this code do?  self.pos_y += self.dy
     the y position is adding the dy position
+    changing position every frame
 8.) What is the width of the window?
     640 or SW
 9.) What is this code checking?  self.pos_y > SH - self.rad:
