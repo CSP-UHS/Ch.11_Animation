@@ -19,7 +19,7 @@ All questions are about the final code in Chapter 12:
         update_ball
 
 6.) What does this code do?   self.dx *= -1
-        Moving the x velocity down
+        Moving the x velocity in it's opposite current direction
 
 7.) What does this code do?  self.pos_y += self.dy
         It moves the position of the ball by incerments of dy
@@ -28,7 +28,7 @@ All questions are about the final code in Chapter 12:
         640
 
 9.) What is this code checking?  self.pos_y > SH - self.rad:
-        It's checking if the edge of the ball has reached the edge of the screen
+        It's checking if half of the ball is off the he top of the window
 
 10.) What is this code checking? if self.pos_x < self.rad
         If the ball goes past the left side of the sceen
