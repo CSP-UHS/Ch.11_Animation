@@ -16,10 +16,13 @@ the following requirements:
 '''
 import arcade
 import random
+SF = 100
+SH = 600
+SW = 600
 
 class snow_ball:
-    def __init__(self, pos_x, pos_y, dy, col):
-        self.radius = random.randint(1, 3)
+    def __init__(self, pos_x, pos_y, dy, rad, col):
+        self.radius = rad
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.dy = dy
@@ -36,17 +39,22 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.BLACK)
         self.snowlist = []
-        for i in range(300):
-            self.pos_x = random.randint(0, 600)
-            self.pos_y = random.randint(0,600)
+        for i in range(SF):
+            self.pos_x = random.randint(0, SW)
+            self.pos_y = random.randint(SH,SH+100) #0, SH
             self.dy = random.randint(-4,1)
-            self.snow_ball = snow_ball(self.pos_x, self.pos_y, self.dy, arcade.color.WHITE)
+            self.rad = random.randint(1, 3)
+            if i ==0:
+                self.color = arcade.color.RED
+            else:
+                self.color = arcade.color.BUBBLES
+            self.snow_ball = snow_ball(self.pos_x, self.pos_y, self.dy, self.rad, arcade.color.WHITE)
             self.snowlist.append(self.snow_ball)
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_rectangle_filled(300,300,10,600,arcade.color.RED_BROWN) # Y
-        arcade.draw_rectangle_filled(300,300,600,10, arcade.color.RED_BROWN) # X
+        # arcade.draw_rectangle_filled(300,300,10,600,arcade.color.RED_BROWN) # Y
+        # arcade.draw_rectangle_filled(300,300,600,10, arcade.color.RED_BROWN) # X
         for item in self.snowlist:
             item.draw_ball()
 
@@ -55,8 +63,6 @@ class MyGame(arcade.Window):
             item.update_ball()
 
 def main():
-    SH = 600
-    SW = 600
     window = MyGame(SH,SW, "SnowFall")
     arcade.run()
 if __name__== "__main__":
