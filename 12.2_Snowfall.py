@@ -16,7 +16,7 @@ the following requirements:
 '''
 import arcade
 import random
-SF = 100
+SF = 200
 SH = 600
 SW = 600
 
@@ -33,6 +33,9 @@ class snow_ball:
 
     def update_ball(self):
         self.pos_y += self.dy
+        if self.pos_y<0:
+            self.pos_x=random.randint(0,SW)
+            self.pos_y= random.randint(SH, SW+100)
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
@@ -41,8 +44,8 @@ class MyGame(arcade.Window):
         self.snowlist = []
         for i in range(SF):
             self.pos_x = random.randint(0, SW)
-            self.pos_y = random.randint(SH,SH+100) #0, SH
-            self.dy = random.randint(-4,1)
+            self.pos_y = random.randint(0,SH) #0, SH
+            self.dy = random.randint(-4,-1)
             self.rad = random.randint(1, 3)
             if i ==0:
                 self.color = arcade.color.RED
@@ -53,10 +56,10 @@ class MyGame(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
-        # arcade.draw_rectangle_filled(300,300,10,600,arcade.color.RED_BROWN) # Y
-        # arcade.draw_rectangle_filled(300,300,600,10, arcade.color.RED_BROWN) # X
         for item in self.snowlist:
             item.draw_ball()
+        arcade.draw_rectangle_filled(SW/2,SH/2,10,SH,arcade.color.RED_BROWN) # Y
+        arcade.draw_rectangle_filled(SW/2,SH/2,SW,10, arcade.color.RED_BROWN) # X
 
     def on_update(self, dt):
         for item in self.snowlist:

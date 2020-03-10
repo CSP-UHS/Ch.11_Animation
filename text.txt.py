@@ -29,6 +29,7 @@ import arcade
 import random
 SH=600
 SW=600
+ST=200
 
 class Star:
     def __init__(self, pos_x, pos_y, dx, dy, col):
@@ -43,6 +44,10 @@ class Star:
         self.pos_y -= 1
         self.pos_x -= 1
 
+        if self.pos_y<400:
+            self.pos_x=random.randint(0,SW)
+            self.pos_y= random.randint(SH, SW+100)
+
     def draw_star(self):
         arcade.draw_circle_filled(self.pos_x,self.pos_y,self.radius,self.col)
 
@@ -51,7 +56,7 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.CATALINA_BLUE)
         self.starlist = []
-        for i in range(50):
+        for i in range(ST):
             self.pos_x = random.randint(0, 595)
             self.pos_y = random.randint(400, 595)
             self.star = Star(self.pos_x, self.pos_y, 3, 3, arcade.color.BUBBLES) #put in correct numbers

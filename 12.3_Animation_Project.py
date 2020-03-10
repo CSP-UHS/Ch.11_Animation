@@ -22,8 +22,6 @@ class Star:
         self.pos_x += self.dx
 
     def draw_star(self):
-        # arcade.draw_circle_filled(self.pos_x,self.pos_y,self.radius,self.col)
-
         a = random.randint(0, 595)
         a2 = random.randint(400, 595)
         my_list = (
@@ -45,24 +43,21 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.CATALINA_BLUE)
         self.starlist = []
         for i in range(100):
-            self.pos_x = random.randint(0, 595)
-            self.pos_y = random.randint(400, 595)
-            self.star = Star(self.pos_x, self.pos_y,1,1, arcade.color.BUBBLES) #put in correct numbers
+            self.pos_x = random.randint(0, SW)
+            self.pos_y = random.randint(200, SH)
+            self.star = Star(self.pos_x, self.pos_y,1,3, arcade.color.BUBBLES) #put in correct numbers
             self.starlist.append(self.star)
-
     def on_draw(self):
         arcade.start_render()
+        for item in self.starlist:
+            item.draw_star()
         arcade.draw_lrtb_rectangle_filled(0,600,200,0, arcade.color.AO) # GRASS
         arcade.draw_triangle_filled(100, 200, 300, 400, 600, 200, arcade.color.EBONY) #middle mountian
         arcade.draw_triangle_filled(400, 200, 600, 350, 600, 200, arcade.color.DARK_GRAY)  # right mountian
         arcade.draw_triangle_filled(0,200, 0, 400, 500, 200, arcade.color.DIM_GRAY) #left mountian
-        for item in self.starlist:
-            item.draw_star()
-
     def on_update(self, dt):
         for item in self.starlist:
             item.update_star()
-
 def main():
     window = MyGame(SH,SW, "SnowFall")
     arcade.run()
