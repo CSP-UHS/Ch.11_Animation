@@ -78,7 +78,6 @@ class MyGame(arcade.Window):
             self.star = Star(self.pos_x, self.pos_y, 3, 1, self.rad, arcade.color.BUBBLES) #put in correct numbers
             self.starlist_3.append(self.star)
 
-
     def on_draw(self):
         arcade.start_render()
         arcade.draw_triangle_filled(100, 200, 300, 400, 600, 200, arcade.color.EBONY)  # middle mountian
