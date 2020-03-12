@@ -16,45 +16,48 @@ class Star:
         self.dx = dx
         self.dy = dy
         self.col = col
-
     def update_star(self):
         self.pos_y = -self.pos_x
         self.pos_x += self.dx
-
+        if self.pos_y<400:
+            self.pos_x=random.randint(0,SW)
+            self.pos_y= random.randint(SH, SW+100)
     def draw_star(self):
-        a = random.randint(0, 595)
-        a2 = random.randint(400, 595)
+        # a = random.randint(0, 595)
+        # a2 = random.randint(400, 595)
         my_list = (
-            (a, a2),
-            (a + 2, a2 - 1),
-            (a, a2 - 2),
-            (a - 1, a2 - 5),
-            (a - 2, a2 - 2),
-            (a - 4, a2 - 1),
-            (a - 2, a2),
-            (a - 1, a2 + 2),
-            (a, a2),
+            (self.pos_x, self.pos_y),
+            (self.pos_x + 2, self.pos_y - 1),
+            (self.pos_x, self.pos_y - 2),
+            (self.pos_x - 1, self.pos_y - 5),
+            (self.pos_x - 2, self.pos_y - 2),
+            (self.pos_x - 4, self.pos_y - 1),
+            (self.pos_x - 2, self.pos_y),
+            (self.pos_x - 1, self.pos_y + 2),
+            (self.pos_x, self.pos_y),
         )
-        arcade.draw_polygon_filled(my_list, arcade.color.BUBBLES)
+        arcade.draw_polygon_filled(my_list, arcade.color.BLACK)
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
-        arcade.set_background_color(arcade.color.CATALINA_BLUE)
+        arcade.set_background_color(arcade.color.WHITE)
         self.starlist = []
-        for i in range(100):
+        for i in range(5):
             self.pos_x = random.randint(0, SW)
-            self.pos_y = random.randint(200, SH)
-            self.star = Star(self.pos_x, self.pos_y,1,3, arcade.color.BUBBLES) #put in correct numbers
+            self.pos_y = random.randint(400, SH)
+            self.color = arcade.color.BLACK
+            self.star = Star(self.pos_x, self.pos_y, 1, 3, self.color)
             self.starlist.append(self.star)
+
     def on_draw(self):
         arcade.start_render()
+        # arcade.draw_lrtb_rectangle_filled(0,600,200,0, arcade.color.AO) # GRASS
+        # arcade.draw_triangle_filled(100, 200, 300, 400, 600, 200, arcade.color.EBONY) #middle mountian
+        # arcade.draw_triangle_filled(400, 200, 600, 350, 600, 200, arcade.color.DARK_GRAY)  # right mountian
+        # arcade.draw_triangle_filled(0,200, 0, 400, 500, 200, arcade.color.DIM_GRAY) #left mountian
         for item in self.starlist:
             item.draw_star()
-        arcade.draw_lrtb_rectangle_filled(0,600,200,0, arcade.color.AO) # GRASS
-        arcade.draw_triangle_filled(100, 200, 300, 400, 600, 200, arcade.color.EBONY) #middle mountian
-        arcade.draw_triangle_filled(400, 200, 600, 350, 600, 200, arcade.color.DARK_GRAY)  # right mountian
-        arcade.draw_triangle_filled(0,200, 0, 400, 500, 200, arcade.color.DIM_GRAY) #left mountian
     def on_update(self, dt):
         for item in self.starlist:
             item.update_star()
