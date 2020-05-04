@@ -7,7 +7,6 @@ import arcade
 import random
 SH=600
 SW=600
-#
 # class Star:
 #     def __init__(self, pos_x, pos_y, dx, dy, col):
 #         self.radius = random.randint(1, 5)
@@ -144,3 +143,5 @@ def main():
 if __name__== "__main__":
     main()
 main()
+
+
