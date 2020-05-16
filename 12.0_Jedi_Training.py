@@ -16,18 +16,19 @@ All questions are about the final code in Chapter 12:
         120
 
 5.) Which method is run 60 times/second?
-        update_ball
+        on_update
 
 6.) What does this code do?   self.dx *= -1
-        Moving the x velocity in it's opposite current direction
+        Moving the x velocity in its opposite current direction
 
 7.) What does this code do?  self.pos_y += self.dy
         It moves the position of the ball by incerments of dy
 
 8.) What is the width of the window?
-        640
+        640 pixels
 
 9.) What is this code checking?  self.pos_y > SH - self.rad:
+        Checking if the ball is goung off the top of the screen
         It's checking if half of the ball is off the he top of the window
 
 10.) What is this code checking? if self.pos_x < self.rad
