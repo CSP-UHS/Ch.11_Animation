@@ -27,6 +27,7 @@ import random
 SW=600
 SH=600
 width=20
+col=(255,0,0)
 
 class Box:
     def __init__(self):
@@ -35,10 +36,19 @@ class Box:
         self.width=width
         self.dx=random.randint(-300,300)
         self.dy=random.randint(-300,300)
+        self.color=col
 
 
 class MyGame(arcade.Window):
+    def __init__(self,width,height,title):
+        self.width=SW
+        self.height=SH
+        self.title="30 boxes"
 
 
+def main():
+    window = MyGame(SW, SH, "30 boxes")
+    arcade.run()
 
-
+if __name__=="__main__":
+    main()
