@@ -27,3 +27,30 @@ import random
 SW=600
 SH=600
 
+
+class Box:
+    def __init__(self):
+        self.x_pos=random.randint(30+self.wid, SW-30-self.wid)
+        self.y_pos=random.randint(30+self.wid, SH-30-self.wid)
+        self.wid=wid
+        self.dx=random.randint(-300,300)
+        self.dy=random.randint(-300,300)
+
+    def movement(self):
+        arcade.draw_rectangle_filled(self.x_pos,self.y_pos,self.wid,self.wid,(255,0,0))
+
+def main():
+    arcade.open_window(600, 600, "30 Boxes")
+    arcade.set_background_color(arcade.color.WHITE)
+    arcade.start_render()
+
+    move = Box()
+    for i in range(50):
+        move.movement()
+
+    arcade.finish_render()
+    arcade.run()
+
+
+if __name__=="__main__":
+    main()
