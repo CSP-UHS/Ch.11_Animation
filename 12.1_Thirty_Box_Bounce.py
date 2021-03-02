@@ -37,6 +37,12 @@ class Box:
         self.dx=random.randint(-300,300)
         self.dy=random.randint(-300,300)
         self.color=col
+    def draw(self):
+        arcade.draw_rectangle_filled(self.x,self.y,self.width,self.width)
+
+    def move(self):
+        self.y_pos +=self.dy
+        self.x_pos +=self.dx
 
 
 class MyGame(arcade.Window):
