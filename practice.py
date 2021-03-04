@@ -1,30 +1,40 @@
 import arcade
-import random
-SW=600
-SH=600
-width=20
-col=(255,0,0)
+SW=640
+SH=480
 
-class Box:
-    def __init__(self):
-        self.x=random.randint(30+self.width, SW-30-self.width)
-        self.y=random.randint(30+self.width, SH-30-self.width)
-        self.width=width
-        self.dx=random.randint(-300,300)
-        self.dy=random.randint(-300,300)
-        self.color=col
-    def draw(self):
-        arcade.draw_rectangle_filled(self.x,self.y,self.width,self.width)
+class Ball:
+    def __init__(self,x,y,dx,dy,r,c):
+        self.x=x
+        self.y=y
+        self.dx=dx
+        self.dy=dy
+        self.r=r
+        self.c=c
 
-    def move(self):
-        self.y_pos +=self.dy
-        self.x_pos +=self.dx
+    def draw_ball(self):
+        arcade.draw_circle_filled(self.x,self.y,self.r,self.c)
 
+    def update_ball(self):
+        self.x+= self.dx
+        self.y+= self.dy
 
+class MyGame(arcade.Window):
+    def __init__(self, width, height, title):
+        super().__init__(width,height, title)
+        arcade.set_background_color(arcade.color.WHITE)
+        self.ball = Ball(320,240,3,-2,15,arcade.color.ARMY_GREEN)
+
+    def on_draw(self):
+        arcade.start_render()
+        self.ball.draw_ball()
+
+    def on_update(self, dt):
+        self.ball.update_ball()
 
 def main():
-    window = MyGame(SW, SH, "30 boxes")
+    window = MyGame(SW, SH, "Window")
     arcade.run()
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
