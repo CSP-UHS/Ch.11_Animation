@@ -1,4 +1,4 @@
-'''
+"""
 30 BOX BOUNCE PROGRAM
 --------------------
 You will want to incorporate lists to modify the
@@ -8,7 +8,7 @@ Ball Bounce Program to create the following:
 2.) Draw four 30px wide side rails on all four sides of the window
 3.) Make each side rail a different color.
 4.) Draw 30 black boxes(squares) of random size from 10-50 pixels
-5.) Animate them starting at random speeds from -300 to +300 pixels/second. 
+5.) Animate them starting at random speeds from -300 to +300 pixels/second.
 6.) All boxes must be moving.
 7.) Start all boxes in random positions between the rails.
 8.) Bounce boxes off of the side rails when the box edge hits the side rail.
@@ -21,4 +21,23 @@ Helpful Hints:
 3.) In the on_draw section use: for box in self.boxlist: box.draw_box()
 4.) Also in the on_draw section draw the side rails.
 5.) In the on_update section use: for box in self.boxlist: box.update_box()
-'''
+"""
+import arcade
+import random
+
+SW = 600
+SH = 600
+BN = 30  # Number of boxes
+
+
+class Box:
+    def __init__(self, x, y, dx, dy, r, c):  # x position, y position, dx & dy, radius, and color
+        self.x = x
+        self.y = y
+        self.dx = dx
+        self.dy = dy
+        self.r = r
+        self.c = c
+
+    def draw_box(self):
+        arcade.draw_rectangle_filled(self.x, self.y, self.r, self.c)
