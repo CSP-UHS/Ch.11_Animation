@@ -28,6 +28,11 @@ SW=600
 SH=600
 box_num=30
 
+arcade.draw_rectangle_filled(15,300,30,240,(255,0,0))
+arcade.draw_rectangle_filled(300,15,240,30,(0,0,255))
+arcade.draw_rectangle_filled(300,585,30,240,(0,255,0))
+arcade.draw_rectangle_filled(585,300,30,240,(0,255,255))
+
 class Box:
     def __init__(self,x,y,dx,dy,w,c):
         self.x=x
@@ -52,6 +57,7 @@ class Box:
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         self.boxlist=[]
+        arcade.set_background_color(arcade.color.WHITE)
 
     def on_draw(self):
         arcade.start_render()
