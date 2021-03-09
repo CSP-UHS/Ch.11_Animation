@@ -26,7 +26,7 @@ import arcade
 import random
 SW=600
 SH=600
-
+box_num=30
 
 class Box:
     def __init__(self,x,y,dx,dy,w,c):
@@ -50,11 +50,19 @@ class Box:
             self.dy *= -1
 
 class MyGame(arcade.Window):
+    def __init__(self, width, height, title):
+        self.boxlist=[]
 
+    def on_draw(self):
+        arcade.start_render()
+        self.box.draw_box()
+
+    def on_update(self, dt):
+        self.box.update_box()
 
 
 def main():
-   window = MyGame(SW, SH, "Thirty Boxes")
+    window = MyGame(SW, SH, "Thirty Boxes")
     arcade.run()
 
 if __name__=="__main__":
