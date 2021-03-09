@@ -38,9 +38,16 @@ class Box:
         self.c=c
 
     def draw_box(self):
+        arcade.draw_rectangle_filled(self.x,self.y,self.w,self.w,self.c)
 
     def update_box(self):
+        self.x += self.dx
+        self.y += self.dy
 
+        if self.x <= self.w or self.x >= SW - self.w:
+            self.dx *= -1
+        if self.y <= self.w or self.y >= SH - self.w:
+            self.dy *= -1
 
 class MyGame(arcade.Window):
 

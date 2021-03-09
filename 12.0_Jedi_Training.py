@@ -12,9 +12,9 @@ Amount the x and y will off set
 4.) How many pixels/sec does the ball move in the y-direction?
 2
 5.) Which method is run 60 times/second?
-on_update
+on_update, draw_ball
 6.) What does this code do?   self.dx *= -1
-make object travel negative to what x travel
+reverses the x velocity
 7.) What does this code do?  self.pos_y += self.dy
 adds to y the amount of movement the y has
 8.) What is the width of the window?
