@@ -18,6 +18,13 @@ class Ball:
         self.x+= self.dx
         self.y+= self.dy
 
+        if self.x <= self.r or self.x >= SW - self.r:
+            self.dx *= -1
+        if self.y <= self.r or self.y >= SH - self.r:
+            self.dy *= -1
+
+
+
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width,height, title)
