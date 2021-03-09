@@ -22,3 +22,26 @@ Helpful Hints:
 4.) Also in the on_draw section draw the side rails.
 5.) In the on_update section use: for box in self.boxlist: box.update_box()
 '''
+import arcade
+import random
+
+SW = 600
+SH = 600
+
+
+class Square:
+    def __init__(self, x, y, dx, dy, c):
+        self.x = random.randint(10, 50)
+        self.y = self.x
+        self.dx = random.randint(-300, 300)
+        self.dy = random.randint(-300, 300)
+
+    def draw_square(self):
+        arcade.draw_rectangle_filled
+
+def main():
+    window = Boxes(SW, SH, "30 Boxes")
+    arcade.run()
+
+if __name__ == "__main__":
+    main()
