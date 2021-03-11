@@ -73,7 +73,7 @@ class MyGame(arcade.Window):
         self.box_list=[]
 
         for i in range(box_num):
-            w = random.randint(10,50)
+            w = random.randint(10, 50)
             dx = random.randint(-5,5)
             dy = random.randint(-5,5)
             x = random.randint(bw + w // 2, SW - bw - w // 2)
@@ -92,10 +92,10 @@ class MyGame(arcade.Window):
         for box in self.box_list:
             box.draw_box()
 
-        arcade.draw_rectangle_filled(15, 300, 30, 540, (255, 0, 0))
-        arcade.draw_rectangle_filled(300, 15, 540, 30, (0, 0, 255))
-        arcade.draw_rectangle_filled(300, 585, 540, 30, (0, 255, 0))
-        arcade.draw_rectangle_filled(585, 300, 30, 540, (255, 255, 0))
+        arcade.draw_rectangle_filled(15, 300, bw, SH, (255, 0, 0))
+        arcade.draw_rectangle_filled(300, 15, SH, bw, (0, 0, 255))
+        arcade.draw_rectangle_filled(300, 585, SH, bw, (0, 255, 0))
+        arcade.draw_rectangle_filled(585, 300, bw, SH, (255, 255, 0))
 
     def on_update(self, dt):
         for box in self.box_list:
