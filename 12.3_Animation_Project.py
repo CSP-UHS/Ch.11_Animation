@@ -20,6 +20,7 @@ the following requirements:
 
 import arcade
 import random
+import time
 
 SW = 600
 SH = 600
@@ -58,18 +59,23 @@ class Wind0s():
     #        self.y = self.y + self.dy
 
     def drawcircle(self):
+
+        arcade.draw_rectangle_filled(300,595,600,15,arcade.color.BLUE)
+        arcade.draw_text("Wind0s V.4.20.69", 25 , 585, arcade.color.WHITE, 12, 0, "center")
+        arcade.draw_text(str(time.ctime()), 400, 585, arcade.color.WHITE, 12, 0, "center")
+
         if self.v == "na":
             arcade.draw_circle_filled(self.x, self.y, 15, self.color)
             arcade.draw_text(self.t, self.x -50, self.y - 30, arcade.color.WHITE, 12, 0, "center")
 
         if self.window == True:
-            if self.v == "na":
+            if self.v == "na": #if it has no identify do this
                 arcade.draw_rectangle_filled(300,300,self.w,self.h,arcade.color.WHITE)
                 arcade.draw_rectangle_filled(300,550,500,20,self.color)
                 arcade.draw_text(self.t,80,540,arcade.color.WHITE_SMOKE,12)
                 arcade.draw_rectangle_outline(300,305,self.w,self.h+10,arcade.color.COOL_GREY)
 
-            if self.t =="Mozzerella Icecat":
+            if self.t =="Mozzerella Icecat": #mozz code lol
                 off = 20
                 arcade.draw_text("G",200+off,380,arcade.color.BLUE,30,0,"left")  #Draw Goongle logo
                 arcade.draw_text("O0", 220+off, 380, arcade.color.DARK_GREEN, 30, 0, "left")
@@ -83,11 +89,10 @@ class Wind0s():
                 arcade.draw_circle_outline(404,364,7.5,arcade.color.COOL_GREY,3)
                 arcade.draw_rectangle_filled(396,356,12,4,arcade.color.COOL_GREY,135)
 
-
-            if self.t == "      Snowfall":
-                print(self.x)
+            if self.t == "      Snowfall": #snowfall code
+                #print(self.x)
                 if self.v =="sf":
-                    print("bruh")
+                    #print("bruh")
                     arcade.draw_circle_filled(self.x, self.y, self.w, arcade.color.RED)
 
 
