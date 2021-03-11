@@ -49,18 +49,43 @@ class Box:
         self.x += self.dx
         self.y += self.dy
 
-        if self.x <= self.w+30 or self.x >= SW -30- self.w:
+        if self.x==0 and self.y==0:
+            self.x+=1
+            self.y+=1
+
+        if self.x <= 30+self.w/2:
             self.dx *= -1
-        if self.y <= self.w+30 or self.y >= SH -30- self.w:
+            self.c=(255,0,0)
+
+        if self.x >= SW-30- self.w/2:
+            self.dx *= -1
+            self.c=(255,255,0)
+
+        if self.y <= 30+self.w/2:
             self.dy *= -1
+            self.c=(0,0,255)
+
+        if self.y >= SH -30- self.w/2:
+            self.dy *= -1
+            self.c=(0,255,0)
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
-        self.boxlist=[]
         arcade.set_background_color(arcade.color.WHITE)
-        self.box=Box(random.randint(100,500),random.randint(100,500),random.randint(-5,5),random.randint(-5,5),
-random.randint(10, 50), (0,0,0))
+
+        self.box_list = []
+
+        for i in range(box_num):
+            w = random.randint(10,50)
+            x = random.randint(30+w/2, )
+            y = random.randint(100,500)
+            dx = random.randint(-5,5)
+            dy = random.randint(-5,5)
+            c = (0,0,0)
+
+            self.box = Box(x, y, w, dx, dy, c)
+
 
     def on_draw(self):
         arcade.start_render()
