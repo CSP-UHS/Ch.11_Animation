@@ -27,7 +27,7 @@ import random
 SW=600
 SH=600
 box_num=30
-
+bw = 30
 # arcade.draw_rectangle_filled(15, 300, 30, 540, (255, 0, 0))
 # arcade.draw_rectangle_filled(300, 15, 540, 30, (0, 0, 255))
 # arcade.draw_rectangle_filled(300, 585, 540, 30, (0, 255, 0))
@@ -49,23 +49,19 @@ class Box:
         self.x += self.dx
         self.y += self.dy
 
-        if self.x==0 and self.y==0:
-            self.x+=1
-            self.y+=1
-
-        if self.x <= 30+self.w/2:
+        if self.x <= bw+self.w/2:
             self.dx *= -1
             self.c=(255,0,0)
 
-        if self.x >= SW-30- self.w/2:
+        if self.x >= SW-bw- self.w/2:
             self.dx *= -1
             self.c=(255,255,0)
 
-        if self.y <= 30+self.w/2:
+        if self.y <= bw+self.w/2:
             self.dy *= -1
             self.c=(0,0,255)
 
-        if self.y >= SH -30- self.w/2:
+        if self.y >= SH -bw- self.w/2:
             self.dy *= -1
             self.c=(0,255,0)
 
@@ -74,25 +70,36 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.WHITE)
 
-        self.box_list = []
+        self.box_list=[]
 
         for i in range(box_num):
             w = random.randint(10,50)
-            x = random.randint(30+int(w/2), SW-30-int(w/2))
-            y = random.randint(30+int(w/2), SH-30-int(w/2))
             dx = random.randint(-5,5)
             dy = random.randint(-5,5)
+            x = random.randint(bw + w // 2, SW - bw - w // 2)
+            y = random.randint(bw + w // 2, SH - bw - w // 2)
             c = (0,0,0)
+            if dx==0 and dy==0:
+                dx = 1
+                dy = 1
 
-            self.box = Box(x, y, w, dx, dy, c)
+            box = Box(x, y, w, dx, dy, c)
+            self.box_list.append(box)
 
 
     def on_draw(self):
         arcade.start_render()
-        self.box.draw_box()
+        for box in self.box_list:
+            box.draw_box()
+
+        arcade.draw_rectangle_filled(15, 300, 30, 540, (255, 0, 0))
+        arcade.draw_rectangle_filled(300, 15, 540, 30, (0, 0, 255))
+        arcade.draw_rectangle_filled(300, 585, 540, 30, (0, 255, 0))
+        arcade.draw_rectangle_filled(585, 300, 30, 540, (255, 255, 0))
 
     def on_update(self, dt):
-        self.box.update_box()
+        for box in self.box_list:
+            box.update_box()
 
 def main():
     window = MyGame(SW, SH, "Thirty Boxes")
