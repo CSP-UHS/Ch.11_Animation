@@ -78,8 +78,8 @@ class MyGame(arcade.Window):
 
         for i in range(box_num):
             w = random.randint(10,50)
-            x = random.randint(30+w/2, )
-            y = random.randint(100,500)
+            x = random.randint(30+int(w/2), SW-30-int(w/2))
+            y = random.randint(30+int(w/2), SH-30-int(w/2))
             dx = random.randint(-5,5)
             dy = random.randint(-5,5)
             c = (0,0,0)
