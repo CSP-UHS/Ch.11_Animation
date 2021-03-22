@@ -25,23 +25,88 @@ Helpful Hints:
 import arcade
 import random
 
+
 SW = 600
 SH = 600
+box_num = 30
+BW = 30
+
+class Box:
+    def __init__(self, x, y, s, dx, dy, c):
+        self.x = x      # X spawn coord
+        self.y = y      # Y spawn coord
+        self.s = s      # length of side
+        self.dx = dx    # velocity of x
+        self.dy = dy    # velocity of y
+        self.c = c      # color
+
+    def draw_box(self):
+        arcade.draw_rectangle_filled(self.x, self.y, self.s, self.s, self.c)    # Draws box
+
+    def update_box(self):      # updates # of pixels 60 times per second
+        self.x += self.dx       # moves x position * 60 per second
+        self.y += self.dy       # moves y position * 60 per second
+
+        # bounce off left
+        if self.x <= BW + self.s / 2:
+            self.dx *= -1                                       # reverse velocity
+            self.c = arcade.color.RED
+
+        # bounce off right
+        if self.x >= SW - BW - self.s / 2:
+            self.dx *= -1                                       # reverse velocity
+            self.c = arcade.color.YELLOW
+
+        # bounce off top
+        if self.y >= SH - BW - self.s / 2:       # if hits bottom or top wall
+            self.dy *= -1                                       # reverse velocity
+            self.c = arcade.color.GREEN
+
+        # bounce off bottom
+        if self.y <= BW + self.s / 2:       # if hits bottom or top wall
+            self.dy *= -1                                       # reverse velocity
+            self.c = arcade.color.BLUE
 
 
-class Square:
-    def __init__(self, x, y, dx, dy, c):
-        self.x = random.randint(10, 50)
-        self.y = self.x
-        self.dx = random.randint(-300, 300)
-        self.dy = random.randint(-300, 300)
+class OogaBooga(arcade.Window):
+    def __init__(self, width, height, title):
+        super().__init__(width, height, title)
+        arcade.set_background_color(arcade.color.WHITE)
 
-    def draw_square(self):
-        arcade.draw_rectangle_filled
+        self.box_list = []     # Create list to hold all boxes
+
+        for i in range(box_num):
+            s = random.randint(10,50)
+            dx = random.randint(-5, 5)
+            dy = random.randint(-5, 5)
+            x = random.randint(BW + s // 2, SW - BW - s // 2)
+            y = random.randint(BW + s // 2, SH - BW - s // 2)
+            c = arcade.color.BLACK
+            if dx == 0 and dy == 0:
+                dx = 20
+            box = Box(x, y, s, dx, dy, c)
+            self.box_list.append(box)
+
+    def on_draw(self):
+        arcade.start_render()
+        for box in self.box_list:
+            box.draw_box()
+
+        # Make rails
+        arcade.draw_rectangle_filled(BW // 2, SH // 2, BW, SH, arcade.color.RED)            #LEFT
+        arcade.draw_rectangle_filled(SW - (BW // 2), SH // 2, BW, SH, arcade.color.YELLOW)  #RIGHT
+        arcade.draw_rectangle_filled(SW // 2, SH - (BW // 2), SW, BW, arcade.color.GREEN)   #TOP
+        arcade.draw_rectangle_filled(SW // 2, BW // 2, SW, BW, arcade.color.BLUE)           #BOTTOM
+
+    def on_update(self, dt):
+        for box in self.box_list:
+            box.update_box()
+
 
 def main():
-    window = Boxes(SW, SH, "30 Boxes")
+    window = OogaBooga(SW, SH, "30 Boxes")
     arcade.run()
+
 
 if __name__ == "__main__":
     main()
