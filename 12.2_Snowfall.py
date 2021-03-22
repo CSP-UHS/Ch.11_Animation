@@ -34,7 +34,7 @@ class Ball:
         arcade.draw_circle_filled(self.x,self.y,self.r,self.c)
 
     def update_snow(self):
-        self.x+= self.dx
+        self.x-= self.dx
 
 
 class MyGame(arcade.Window):

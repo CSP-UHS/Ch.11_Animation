@@ -28,10 +28,6 @@ SW=600
 SH=600
 box_num=30
 bw = 30
-# arcade.draw_rectangle_filled(15, 300, 30, 540, (255, 0, 0))
-# arcade.draw_rectangle_filled(300, 15, 540, 30, (0, 0, 255))
-# arcade.draw_rectangle_filled(300, 585, 540, 30, (0, 255, 0))
-# arcade.draw_rectangle_filled(585, 300, 30, 540, (255, 255, 0))
 
 class Box:
     def __init__(self,x,y,dx,dy,w,c):
