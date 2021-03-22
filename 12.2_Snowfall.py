@@ -53,23 +53,31 @@ class MyGame(arcade.Window):
             dy = random.randint(-4,-1)
             x = random.randint(0,SW)
             y = random.randint(0, SH)
-            c = arcade.color.white
+
+            if i==1:
+                c = arcade.color.RED
+            else:
+                c = arcade.color.WHITE
 
             makeflake = Flake(x,y,dy,r,c)
-            self.flake_list.append(Flake)
+            self.flake_list.append(makeflake)
 
 
     def on_draw(self):
         arcade.start_render()
-        self.ball.draw_snow()
+        for flake in self.box_list:
+            flake.draw_flake()
+
+        arcade.draw_rectangle_filled(SW//2,SH//2,10,SH,arcade.color.ALLOY_ORANGE)
+        arcade.draw_rectangle_filled(SW // 2, SH // 2, SW, 10, arcade.color.ALLOY_ORANGE)
 
     def on_update(self, dt):
-        self.ball.update_snow()
+        for flake in self.flake_list:
+            flake.update_flake()
 
 def main():
-    window = MyGame(SW, SH, "Window")
+    window = MyGame(SW, SH, "Snow Fall")
     arcade.run()
-
 
 if __name__ == "__main__":
     main()
