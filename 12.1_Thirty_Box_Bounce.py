@@ -79,7 +79,7 @@ class MyGame(arcade.Window):
                 dx = 1
                 dy = 1
 
-            box = Box(x, y, w, dx, dy, c)
+            box = Box(x, y, dx, dy, w, c)
             self.box_list.append(box)
 
 
