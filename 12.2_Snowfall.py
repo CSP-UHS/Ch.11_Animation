@@ -35,7 +35,7 @@ class Flake:
         arcade.draw_circle_filled(self.x,self.y,self.r,self.c)
 
     def update_flake(self):
-        self.x+= self.dy
+        self.y+= self.dy
 
         if self.y <= 0 - self.r:
             self.y=random.randint(SH, SH+100)
