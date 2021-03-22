@@ -62,7 +62,7 @@ class MyGame(arcade.Window):
             if i==1:
                 c = arcade.color.RED
             else:
-                c = arcade.color.RED
+                c = arcade.color.WHITE
 
 
             makeflake = Flake(x, y, dy, r, c)
