@@ -21,26 +21,43 @@ import arcade
 import random
 SW=600
 SH=600
+FN=300
 
-class Ball:
-    def __init__(self,x,y,dx,r,c):
+class Flake:
+    def __init__(self,x ,y ,dy,r,c):
         self.x=x
         self.y=y
-        self.dx=dx
+        self.dy=dy
         self.r=r
         self.c=c
 
-    def draw_snow(self):
+    def draw_flake(self):
         arcade.draw_circle_filled(self.x,self.y,self.r,self.c)
 
-    def update_snow(self):
-        self.x-= self.dx
+    def update_flake(self):
+        self.x+= self.dy
 
+        if self.y <= 0 - self.r:
+            self.y=random.randint(SH, SH+100)
+            self.x=random.randint(0,SW)
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width,height, title)
         arcade.set_background_color(arcade.color.BLACK)
+
+        self.flake_list=[]
+
+        for i in range(FN):
+            r = random.randint(1,3)
+            dy = random.randint(-4,-1)
+            x = random.randint(0,SW)
+            y = random.randint(0, SH)
+            c = arcade.color.white
+
+            makeflake = Flake(x,y,dy,r,c)
+            self.flake_list.append(Flake)
+
 
     def on_draw(self):
         arcade.start_render()
