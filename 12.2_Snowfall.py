@@ -58,7 +58,7 @@ class OogaBooga(arcade.Window):
             dy = random.randint(-4, -1)
             x = random.randint(0, SW)
             y = random.randint(0, SH)
-            c = arcade.color.WHITE
+            c = arcade.color.SNOW
 
             if i == 1:
                 c = arcade.color.RED
