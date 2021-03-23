@@ -15,6 +15,7 @@ snowflakes = 30
 #keyboard stuffs
 letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 numbers = [97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122]
+line_list = [0]
 
 
 class Wind0s():
@@ -33,6 +34,9 @@ class Wind0s():
         self.curx = 300
         self.cury = 300
         self.note = ""
+        self.line = 0
+        self.timer = 0
+        self.curscolor = arcade.color.BLACK
 
     def open(self):  # called to open window
         # print("woah")
@@ -51,8 +55,9 @@ class Wind0s():
         self.curx = self.curx + dx
         self.cury = self.cury + dy
 
-    def notes(self,key):
+    def notes(self,key,mod):
         if self.t == "        Notes":
+            pos = 0
             print(key)
             if key == 32:
                 print("space")
@@ -62,7 +67,11 @@ class Wind0s():
                 self.note = self.note[:-1]
             if key == 65293:
                 print("return")
-                self.note = self.note + "^"
+                self.note = self.note + "\n"
+            if key == 65289:
+                self.note = self.note + "    "
+
+
 
 
 
@@ -72,7 +81,10 @@ class Wind0s():
                 if i == key:
                     #print("test")
                     key = letters[pos]
-                    self.note = self.note + key
+                    if mod == 1:
+                        self.note = self.note + key.upper()
+                    else:
+                        self.note = self.note + key
 
 
 
@@ -133,21 +145,28 @@ class Wind0s():
                                                   self.color)  # draws ball
 
                 if self.t == "        Notes":
-                    line2 = ""
-                    line3 = ""
-                    pos = self.note.find("^")
-                    pos1 = pos + 1
-                    #print(pos)
-                    if pos == -1:
-                        line1 = self.note
+
+
+                    if self.curscolor == arcade.color.WHITE:
+                        arcade.draw_text(self.note, self.curx - 240, self.cury + 240, arcade.color.BLACK,
+                                         anchor_y="top")
                     else:
-                        line1 = self.note[:pos]
-                        line2 = self.note[pos1:]
-                    arcade.draw_text(line1,self.curx-240,self.cury+220,arcade.color.BLACK)
-                    arcade.draw_text(line2,self.curx-240,self.cury+200,arcade.color.BLACK)
+                        arcade.draw_text(self.note + "|", self.curx - 240, self.cury + 240, self.curscolor,
+                                         anchor_y="top")
+                    arcade.draw_text(self.note,self.curx - 240, self.cury + 240, arcade.color.BLACK ,anchor_y="top")
+
 
 
     def updatecirlce(self):
+        if self.timer >= 60:
+            self.timer = 0
+        else:
+            self.timer += 1
+
+        if self.timer == 30:
+            self.curscolor = arcade.color.WHITE
+        if self.timer == 0:
+            self.curscolor = arcade.color.BLACK
 
         if self.v == "sf" and self.v != "ball":  # movement for snowflakes
             self.y = self.y + self.dy  # + (0 * (self.cury - 300))
@@ -189,7 +208,7 @@ class Wind0s():
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
-        super().__init__(width, height, title)
+        super().__init__(width, height, title,antialiasing=False)
         arcade.set_background_color(arcade.color.BLACK)
 
         self.note = ""
@@ -303,7 +322,10 @@ class MyGame(arcade.Window):
             if box.t == "        Notes":
                 if box.window == True:
                     self.note = symbol
-                    box.notes(self.note)
+                    box.notes(self.note,modifiers)
+
+
+
 
 
 
