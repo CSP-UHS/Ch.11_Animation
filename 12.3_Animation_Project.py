@@ -1,21 +1,24 @@
+
+
 '''
-
-
-
 '''
 
 import arcade
 import random
 import time
 
-SW = 900
-SH = 900
-snowflakes = 100
+SW = 1300
+SH = 800
+snowflakes = 30
+
+
+#keyboard stuffs
+letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+numbers = [97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122]
 
 
 class Wind0s():
-    def __init__(self, x, y, dx, dy, w, h, c, t, v,
-                 cond):  # x,y vel x, vel y, width/radius, height, color, title, identifier, ident 2
+    def __init__(self, x, y, dx, dy, w, h, c, t, v, cond):  # x,y vel x, vel y, width/radius, height, color, title, identifier, ident 2
         self.x = x
         self.y = y
         self.dx = dx
@@ -29,6 +32,7 @@ class Wind0s():
         self.prog = 0
         self.curx = 300
         self.cury = 300
+        self.note = ""
 
     def open(self):  # called to open window
         # print("woah")
@@ -47,23 +51,49 @@ class Wind0s():
         self.curx = self.curx + dx
         self.cury = self.cury + dy
 
+    def notes(self,key):
+        if self.t == "        Notes":
+            print(key)
+            if key == 32:
+                print("space")
+                self.note = self.note + " "
+            if key == 65288:
+                print("back")
+                self.note = self.note[:-1]
+            if key == 65293:
+                print("return")
+                self.note = self.note + "^"
+
+
+
+            pos = -1
+            for i in numbers:
+                pos = pos + 1
+                if i == key:
+                    #print("test")
+                    key = letters[pos]
+                    self.note = self.note + key
+
+
+
+
     # This does wayyyy more than draw circles but im to lazy to rename it. Responsible for drawing everything on screen. CAUTION, Held together with magic and tape so yeah.
     def drawcircle(self):
 
         arcade.draw_rectangle_filled((0.5 * SW), (SH - 5), SW, 15, arcade.color.BLUE)  # Header
         arcade.draw_text("Wimd0s V.4.20.69", 25, (SH - 15), arcade.color.WHITE, 12, 0, "center")
-        arcade.draw_text(str(time.ctime()), (SW - 160), (SH - 15), arcade.color.WHITE, 12, 0, "center")
+        arcade.draw_text(str(time.ctime()), (SW - 190), (SH - 15), arcade.color.WHITE, 12, 0, "center")
 
         if self.v == "na": #Icons on desktop
             arcade.draw_circle_filled(self.x, self.y, 15, self.color)
             arcade.draw_text(self.t, self.x - 50, self.y - 30, arcade.color.WHITE, 12, 0, "center")
 
         if self.window == True:
-            if self.v == "na":  # if window has no identify do this (draws blank window"
+            if self.v == "na":  # if window has no identity do this (draws blank window)
                 # print("test")
-                if self.prog <= 500:
+                if self.prog <= 500: # opening animation
                     arcade.draw_rectangle_outline(self.curx, self.cury, self.prog, self.prog, arcade.color.COOL_GREY)
-                if self.prog >= 500:
+                if self.prog >= 500: # Blank window
                     arcade.draw_rectangle_filled(self.curx, self.cury, self.w, self.h, arcade.color.WHITE)
                     arcade.draw_rectangle_filled(self.curx, self.cury + 250, 500, 20, self.color)
                     arcade.draw_text(self.t, self.curx - 230, self.cury + 240, arcade.color.WHITE_SMOKE, 12)
@@ -101,6 +131,21 @@ class Wind0s():
                         # print(self.v)
                         arcade.draw_circle_filled((self.x + (self.curx - 300)), (self.y + (self.cury - 300)), self.w,
                                                   self.color)  # draws ball
+
+                if self.t == "        Notes":
+                    line2 = ""
+                    line3 = ""
+                    pos = self.note.find("^")
+                    pos1 = pos + 1
+                    #print(pos)
+                    if pos == -1:
+                        line1 = self.note
+                    else:
+                        line1 = self.note[:pos]
+                        line2 = self.note[pos1:]
+                    arcade.draw_text(line1,self.curx-240,self.cury+220,arcade.color.BLACK)
+                    arcade.draw_text(line2,self.curx-240,self.cury+200,arcade.color.BLACK)
+
 
     def updatecirlce(self):
 
@@ -147,9 +192,11 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.BLACK)
 
+        self.note = ""
+
         # Snowflakes Code
         flake_list = []
-        for i in range(30):
+        for i in range(snowflakes):
             self.flake = Wind0s(random.randint(65, 525), random.randint(65, 525), 0, (-1 * random.randint(1, 4)),
                                 random.randint(1, 3), 0, arcade.color.WHITE, "      Snowfall", "sf", False)
             flake_list.append(self.flake)
@@ -161,7 +208,7 @@ class MyGame(arcade.Window):
 
         self.window = Wind0s(50, 40, 0, 0, 500, 500, arcade.color.PURPLE, "Mozzerella Icecat", "na", False)
         self.window_list.append(self.window)
-        self.window = Wind0s(50, 85, 0, 0, 500, 500, arcade.color.BLUE, "      Test Test", "na", False)
+        self.window = Wind0s(50, 85, 0, 0, 500, 500, arcade.color.BLUE, "        Notes", "na", False)
         self.window_list.append(self.window)
         self.window = Wind0s(50, 130, 0, 0, 500, 500, arcade.color.BRICK_RED, "      Snowfall", "na", False)
         self.window_list.append(self.window)
@@ -226,6 +273,7 @@ class MyGame(arcade.Window):
     # def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
     #    for flake in self.window_list:
     #        flake.push(dy, x, y)
+
     # So there is a lot going on here, this sends paramiters to the "hold" function in the WinD0s class. It looks for where the mouse is and sends that and the mouses movememt to hte hold function.
     def on_mouse_drag(self, x: float, y: float, dx: float, dy: float, buttons: int, modifiers: int):
         # print("test")
@@ -249,6 +297,19 @@ class MyGame(arcade.Window):
                     if x - flake.curx >= -250 and x - flake.curx <= 250:
                         # print("test pass")
                         flake.hold(x, y, dx, dy)
+
+    def on_key_press(self, symbol: int, modifiers: int):
+        for box in self.window_list:
+            if box.t == "        Notes":
+                if box.window == True:
+                    self.note = symbol
+                    box.notes(self.note)
+
+
+
+
+
+
 
 
 def main():
