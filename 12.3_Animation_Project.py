@@ -4,10 +4,10 @@ ANIMATION PROJECT
 Your choice!!! Have fun and be creative.
 
 '''
-
 import arcade
-SW=640
-SH=480
+import random
+SW=600
+SH=400
 
 class Ball:
     def __init__(self,x,y,dx,dy,r,c):
