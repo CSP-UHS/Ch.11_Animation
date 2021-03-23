@@ -22,3 +22,88 @@ Helpful Hints:
 4.) Also in the on_draw section draw the side rails.
 5.) In the on_update section use: for box in self.boxlist: box.update_box()
 '''
+
+
+import arcade
+import random
+SW = 600
+SH = 600
+box_num = 30
+
+
+class Square():
+    def __init__(self, x, y, dx, dy, w, c):
+        self.x = x
+        self.y = y
+        self.dx = dx
+        self.dy = dy
+        self.w = w
+        self.color = c
+        if self.dx == 0:
+            self.dx = random.randint(-20,20)
+            print("zero")
+        if self.dy == 0:
+            self.dy = random.randint(-20,20)
+            print("zero1")
+
+
+    def drawsquare(self):
+        arcade.draw_rectangle_filled(self.x, self.y, self.w, self.w, self.color)
+
+
+    def upatesquare(self):
+        self.dy = self.dy - (9.81/60)
+        self.x += self.dx
+        self.y += self.dy
+
+        if self.x <= ((self.w * 0.5) + 30):
+            self.dx = (self.dx * -1)
+            self.color = arcade.color.GAMBOGE
+
+        if self.x >= (SW - (self.w * 0.5) - 30 ):
+            self.dx = (self.dx * -1)
+            self.color = arcade.color.HARLEQUIN
+
+        if self.y <= ((self.w * 0.5) + 30):
+            self.dy = (self.dy * -1) + (9.81/60)
+            self.color = (arcade.color.BANANA_MANIA)
+
+        if self.y >= (SH - (self.w * 0.5) - 30):
+            self.dy = (self.dy * -1)
+            self.color = (arcade.color.DARK_BYZANTIUM)
+
+
+class MyGame(arcade.Window):
+    def __init__(self, width, height, title, boxnum):
+        super().__init__(width,height,title)
+        arcade.set_background_color(arcade.color.BLACK)
+
+        self.box_list = []
+        for i in range(boxnum):
+            self.square = Square(random.randint(80,520), random.randint(80,520), random.randint(-10,10), random.randint(-10,10), random.randint(5,50), arcade.color.KOBI)
+            self.box_list.append(self.square)
+
+    def on_draw(self):
+        arcade.start_render()
+        for box in self.box_list:
+            box.drawsquare()
+
+        arcade.draw_rectangle_filled(0,(0.5 * SH),60,SH,arcade.color.GAMBOGE)
+        arcade.draw_rectangle_filled(SW, (0.5 * SH), 60, SH, arcade.color.HARLEQUIN)
+        arcade.draw_rectangle_filled((SW*0.5),SH, SW, 60, arcade.color.DARK_BYZANTIUM)
+        arcade.draw_rectangle_filled((SW*0.5),0, SW, 60, arcade.color.BANANA_MANIA)
+
+
+
+    def on_update(self, dt):
+        for box in self.box_list:
+            box.upatesquare()
+
+
+def main():
+    mywindow = MyGame(SW,SH,"Title", box_num)
+    arcade.run()
+
+
+if __name__ == "__main__":
+    main()
