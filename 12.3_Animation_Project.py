@@ -33,8 +33,6 @@ class Plane:
         self.x+= self.dx
         self.y+= self.dy
 
-
-
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width,height, title)
