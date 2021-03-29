@@ -36,7 +36,7 @@ class Plane:
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width,height, title)
-        arcade.set_background_color(arcade.color.BLACK)
+        arcade.set_background_color(arcade.color.WHITE)
         self.plane = Plane(-40,200,3,0,20,arcade.color.ARMY_GREEN)
 
     def on_draw(self):
