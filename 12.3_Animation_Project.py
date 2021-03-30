@@ -8,10 +8,9 @@ import arcade
 
 SW = 800
 SH = 600
-bird_count = 0
 
 
-class Bird:
+class Ball:
     def __init__(self, x, y, dx, dy, r, c):
         self.x = x
         self.y = y
@@ -20,10 +19,10 @@ class Bird:
         self.r = r
         self.c = c
 
-    def draw_bird(self):
+    def draw_ball(self):
         arcade.draw_circle_filled(self.x, self.y, self.r, self.c)
 
-    def update_bird(self):
+    def update_ball(self):
         self.x += self.dx
         self.y += self.dy
 
@@ -32,19 +31,24 @@ class Bird:
         if self.y < self.r or self.y >= SH - self.r:
             self.dy *= -1
 
+    def update_sky(self):
+        if self.y < 150:
+            arcade.set_background_color(arcade.color.DARK_BLUE)
+        elif self.y > 250:
+            arcade.set_background_color((173, 216, 230))
+
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
-        arcade.set_background_color(arcade.color.BURLYWOOD)
-        self.bird = Bird(320.5, 240, 5, -2, 30, arcade.color.MISTY_ROSE)
+        arcade.set_background_color((173, 216, 230))
+        self.ball = Ball(400, 500, 0, -2, 50, arcade.color.YELLOW_ROSE)
 
     def on_draw(self):
         arcade.start_render()
-        self.bird.draw_bird()
+        self.ball.draw_ball()
         # draws sea & lighthouse
-        arcade.draw_rectangle_filled(screen_width / 2, screen_height / 6, screen_width - 1, screen_height / 3,
-                                     (52, 143, 171))
+        arcade.draw_rectangle_filled(SW / 2, SH / 6, SW - 1, SH / 3, (52, 143, 171))
         arcade.draw_rectangle_filled(100, 0, 150, 800, arcade.color.ASH_GREY)
         arcade.draw_rectangle_filled(100, 100, 50, 50, arcade.color.BLACK)
         arcade.draw_rectangle_filled(100, 300, 50, 50, arcade.color.BLACK)
@@ -53,20 +57,13 @@ class MyGame(arcade.Window):
         arcade.draw_circle_filled(105, 525, 10, (247, 244, 213))
 
     def on_update(self, dt):
-        self.bird.update_bird()
+        self.ball.update_ball()
+        self.ball.update_sky()
 
 
 def main():
-    window = MyGame(SW, SH, "My Game")
+    window = MyGame(SW, SH, "Animation Project - Geni W")
     arcade.run()
-
-
-
-
-# draws birds
-def draw_bird(x, y):
-    arcade.draw_arc_outline(x, y, 20, 20, arcade.color.BLACK, 0, 90)
-    arcade.draw_arc_outline(x + 20, y, 20, 20, arcade.color.BLACK, 90, 180)
 
 
 if __name__ == "__main__":
