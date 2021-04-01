@@ -32,6 +32,7 @@ class Flake:
         self.r = r      # Radius
         self.dy = dy    # velocity of y
         self.c = c      # color
+        self.noise = arcade.load_sound("laser.mp3")
 
     def draw_flake(self):
         arcade.draw_circle_filled(self.x, self.y, self.r, self.c)    # Draws a "flake"
@@ -43,6 +44,7 @@ class Flake:
         if self.y <= -self.r:
             self.x = random.randint(0, SW)
             self.y = random.randint(SH, SH + 100)
+            arcade.play_sound(self.noise)
 
 
 class OogaBooga(arcade.Window):
