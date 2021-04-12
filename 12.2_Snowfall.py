@@ -60,8 +60,6 @@ class MyGame(arcade.Window):
                 c = arcade.color.RED
             else:
                 c = arcade.color.WHITE
-
-
             make_flake = Flake(x, y, dy, r, c)
             self.flakelist.append(make_flake)
 
