@@ -80,3 +80,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    window = OogaBooga(SW, SH, "Ooga Booga")
+    arcade.run()
+
+
+if __name__ == "__main__":
+    main()
