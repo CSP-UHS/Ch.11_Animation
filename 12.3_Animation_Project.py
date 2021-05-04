@@ -102,7 +102,7 @@ class Bruh(arcade.Window):
             i.updatetri()
             if i.x - self.box.x >37 and i.x - self.box.x <40:
                 self.box.jump()
-                print("jump")
+
 
 
 
