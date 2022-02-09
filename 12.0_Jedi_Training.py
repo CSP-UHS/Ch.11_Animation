@@ -4,9 +4,9 @@ Sign your name:________________
 All questions are about the final code in Chapter 12:
 
 1.) Where is the ball's original location?
-
+    In the center of the screen
 2.) What are the variables dx and dy?
-
+    dx = 3 and dy = 2
 3.) How many pixels/sec does the ball move in the x-direction?
 
 4.) How many pixels/sec does the ball move in the y-direction?
