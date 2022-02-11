@@ -1,4 +1,5 @@
 import arcade
+import random
 
 SW = 640
 SH = 480
@@ -16,33 +17,55 @@ class Balls():
     def update_ball(self):
         self.pos_x += self.dx
         self.pos_y += self.dy
-
         #bounce balls of walls
         if self.pos_x > SW-self.rad or self.pos_x < self.rad:
             self.dx *= -1
-        if self.pos_y > SW-self.rad or self.pos_y < self.rad:
+        if self.pos_y > SH-self.rad or self.pos_y < self.rad:
             self.dy *= -1
-
-
 
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.WHITE_SMOKE)
-        self.ball = Balls(320, 240, 3, 2, 15, arcade.color.FRENCH_PUCE)
+        self.balls = []
+        for i in range(10000):
+            r = random.randint(2, 20)
+            x = random.randint(r, SW - r)
+            y = random.randint(r, SH - r)
+            dx = random.randint(-3, 3)
+            dy = random.randint(-3, 3)
+            ball = Balls(x, y, dx, dy, 15, arcade.color.FRENCH_PUCE)
+            self.balls.append(ball)
     def on_draw(self):
         arcade.start_render()
-        self.ball.draw_ball()
+        for ball in self.balls:
+            ball.draw_ball()
+        #self.ball.draw_ball()
     def on_update(self, dt):
-        self.x += 1
-        self.y -= 1
+        #self.ball.update_ball()
+        for ball in self.balls:
+            ball.update_ball()
+
 
 
 
 def myprogram():
-    Window = MyGame(SW, SH, "Windows 10")
+    window = MyGame(SW, SH, "Windows 10")
     arcade.run()
 
 if __name__ == "__main__":
     myprogram()
+
+
+'''
+def myprogram():
+    arcade.run()
+
+if __name__ == "__main__":
+    myprogram()
+
+
+
+
+'''
