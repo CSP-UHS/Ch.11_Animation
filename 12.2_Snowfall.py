@@ -65,19 +65,16 @@ class MyGame(arcade.Window):
         arcade.start_render()
         for flake in self.flakelist:
             flake.draw_flake()
-        arcade.draw_rectangle_filled(SW//2, SH//2, 10, SH, arcade.color.WHITE)
+        arcade.draw_rectangle_filled(SW//2, SH//2, 10, SH, arcade.color.WHITE_SMOKE)
         arcade.draw_rectangle_filled(SW//2, 20, SW, 70, arcade.color.DARK_BROWN)
-        arcade.draw_rectangle_filled(SW//2, 20, SW, 70, arcade.color.DARK_BROWN) #reverse this
-        arcade.draw_rectangle_filled(SW//2, SH//2, SW, 10, arcade.color.WHITE)
-
+        arcade.draw_rectangle_filled(SW//2, 600, SW, 70, arcade.color.DARK_BROWN) #reverse this
+        arcade.draw_rectangle_filled(SW//2, SH//2, SW, 10, arcade.color.WHITE_SMOKE)
 
     def on_update(self, dt):
         for flake in self.flakelist:
             flake.update_flake()
-
 def main():
     my_window = MyGame(SW, SH, "Snowfall")
-
     arcade.run()
 
 if __name__ == "__main__":
