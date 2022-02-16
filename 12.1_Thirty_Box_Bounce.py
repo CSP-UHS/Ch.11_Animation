@@ -22,3 +22,69 @@ Helpful Hints:
 4.) Also in the on_draw section draw the side rails.
 5.) In the on_update section use: for box in self.boxlist: box.update_box()
 '''
+import arcade
+import random
+
+SW = 600
+SH = 600
+BW = 30
+
+class Box:
+    def __init__(self, x, y, side, dx, dy, c):
+        self.x = x
+        self.y = y
+        self.dx = dx
+        self.dy = dy
+        self.side = side
+        self.c = c
+    def draw_box(self):
+        arcade.draw_rectangle_filled(self.x, self.y, self.side, self.side, self.c)
+    def update_box(self):
+        self.x += self.dx
+        self.y += self.dy
+        if self.x <= BW + self.side/2:
+            self.dx *= -1
+        if self.x >= SW - BW - self.side/2:
+            self.dx *= -1
+        if self.y >= SH - BW - self.side/2:
+            self.dy *= -1
+        if self.y <= BW + self.side/2:
+            self.dy *= -1
+
+class MyGame(arcade.Window):
+    def __init__(self, SW, SH, title):
+        super().__init__(SW, SH, title)
+        arcade.set_background_color(arcade.color.WHITE)
+        self.boxlist = []
+        for i in range(30): #number of boxes
+            s = random.randint(10, 50)
+            dx = random.randint(-5, 5)
+            dy = random.randint(-5, 5)
+            x = random.randint(BW+s//2, SW-BW-s//2)
+            y = random.randint(BW+s//2, SH-BW-s//2)
+            c = arcade.color.BLACK
+            if dx == 0 and dy == 0:
+                dx = 20
+
+            box = Box(x, y, s, dx, dy, c)
+            self.boxlist.append(box)
+    def on_draw(self):
+        arcade.start_render()
+        for box in self.boxlist:
+            box.draw_box()
+        arcade.draw_rectangle_filled(BW//2, SH//2, BW, SH, arcade.color.BLUE)
+        arcade.draw_rectangle_filled(SW-BW//2, SH//2, BW, SH, arcade.color.BLUE)
+        arcade.draw_rectangle_filled(SW//2, SH-BW//2, SW, BW, arcade.color.BLUE)
+        arcade.draw_rectangle_filled(SW//2, BW//2, SW, BW, arcade.color.BLUE)
+    def on_update(self, dt):
+        for box in self.boxlist:
+            box.update_box()
+
+def main():
+    my_window = MyGame(SW, SH, "30 Boxes")
+
+    arcade.run()
+
+
+if __name__ == "__main__":
+    main()
