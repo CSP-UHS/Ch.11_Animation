@@ -46,16 +46,20 @@ class Box:
         self.y += self.dy
         if self.x <= BW + self.side/2:
             self.dx *= -1
-            self.c = print()
+            self.c = arcade.color.RESOLUTION_BLUE
+            # left edge
         if self.x >= SW - BW - self.side/2:
             self.dx *= -1
-            self.c = print()
-        if self.y >= SH - BW - self.side/2:
+            self.c = arcade.color.BRINK_PINK
+            # right edge
+        if self.y >= SH - BW - selfixf.side/2:
             self.dy *= -1
-            self.c = print()
+            self.c = arcade.color.AMARANTH
+            # top edge
         if self.y <= BW + self.side/2:
             self.dy *= -1
-            self.c = print()
+            self.c = arcade.color.WATERSPOUT
+            # bottom edge
 
 class MyGame(arcade.Window):
     def __init__(self, SW, SH, title):
