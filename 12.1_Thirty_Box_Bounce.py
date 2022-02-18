@@ -52,7 +52,7 @@ class Box:
             self.dx *= -1
             self.c = arcade.color.BRINK_PINK
             # right edge
-        if self.y >= SH - BW - selfixf.side/2:
+        if self.y >= SH - BW - self.side/2:
             self.dy *= -1
             self.c = arcade.color.AMARANTH
             # top edge
