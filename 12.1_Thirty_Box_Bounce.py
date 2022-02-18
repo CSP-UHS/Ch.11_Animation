@@ -29,6 +29,8 @@ SW = 600
 SH = 600
 BW = 30
 
+
+
 class Box:
     def __init__(self, x, y, side, dx, dy, c):
         self.x = x
@@ -44,12 +46,16 @@ class Box:
         self.y += self.dy
         if self.x <= BW + self.side/2:
             self.dx *= -1
+            self.c = print()
         if self.x >= SW - BW - self.side/2:
             self.dx *= -1
+            self.c = print()
         if self.y >= SH - BW - self.side/2:
             self.dy *= -1
+            self.c = print()
         if self.y <= BW + self.side/2:
             self.dy *= -1
+            self.c = print()
 
 class MyGame(arcade.Window):
     def __init__(self, SW, SH, title):
@@ -57,6 +63,7 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.WHITE)
         self.boxlist = []
         for i in range(30): #number of boxes
+            box_color = arcade.color.BLUE
             s = random.randint(10, 50)
             dx = random.randint(-5, 5)
             dy = random.randint(-5, 5)
@@ -65,17 +72,16 @@ class MyGame(arcade.Window):
             c = arcade.color.BLACK
             if dx == 0 and dy == 0:
                 dx = 20
-
             box = Box(x, y, s, dx, dy, c)
             self.boxlist.append(box)
     def on_draw(self):
         arcade.start_render()
         for box in self.boxlist:
             box.draw_box()
-        arcade.draw_rectangle_filled(BW//2, SH//2, BW, SH, arcade.color.BLUE)
-        arcade.draw_rectangle_filled(SW-BW//2, SH//2, BW, SH, arcade.color.BLUE)
-        arcade.draw_rectangle_filled(SW//2, SH-BW//2, SW, BW, arcade.color.BLUE)
-        arcade.draw_rectangle_filled(SW//2, BW//2, SW, BW, arcade.color.BLUE)
+        arcade.draw_rectangle_filled(BW//2, SH//2, BW, SH, arcade.color.RESOLUTION_BLUE)
+        arcade.draw_rectangle_filled(SW-BW//2, SH//2, BW, SH, arcade.color.BRINK_PINK)
+        arcade.draw_rectangle_filled(SW//2, SH-BW//2, SW, BW, arcade.color.AMARANTH)
+        arcade.draw_rectangle_filled(SW//2, BW//2, SW, BW, arcade.color.WATERSPOUT)
     def on_update(self, dt):
         for box in self.boxlist:
             box.update_box()
