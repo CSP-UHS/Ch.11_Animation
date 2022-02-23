@@ -20,6 +20,7 @@ class Flake:
         self.col = c
 
     def draw_flake(self):
+        # draw the stuff right here
         arcade.draw_circle_filled(self.x, self.y, self.rad, self.col)
 
     def update_flake(self):
@@ -33,7 +34,7 @@ class MyGame(arcade.Window):
     def __init__(self, SW, SH, title):
         super().__init__(SW, SH, title)
         arcade.set_background_color(arcade.color.BLACK)
-        self.flakelist = []    #  hold all snow flake
+        self.flakelist = []
         #   create flake
         for i in range(FN):
             r = random.randint(1, 4)
