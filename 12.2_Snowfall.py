@@ -17,3 +17,7 @@ the following requirements:
 
 
 '''
+import arcade
+import random
+SW = 600
+SH = 600
