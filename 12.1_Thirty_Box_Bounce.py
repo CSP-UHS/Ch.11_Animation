@@ -22,3 +22,92 @@ Helpful Hints:
 4.) Also in the on_draw section draw the side rails.
 5.) In the on_update section use: for box in self.boxlist: box.update_box()
 '''
+import arcade
+import random
+SW = 600
+SH = 600
+
+class Ball():
+    def __init__(self,pos_x,pos_y,dx,dy,rad,col):
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.dx=dx
+        self.dy=dy
+        self.rad = rad
+        self.col = col
+
+    def draw_ball(self):
+        # arcade.draw_circle_filled(self.pos_x,self.pos_y,self.rad,self.col)
+        arcade.draw_rectangle_filled(self.pos_x,self.pos_y,self.rad,self.rad,self.col,0)
+    def update_ball(self):
+        self.pos_x+=self.dx
+        self.pos_y+=self.dy
+        self.col
+
+        #bound ball off wall
+        if self.pos_x > SW-self.rad or self.pos_x < self.rad:
+            self.dx *= -1
+        if self.pos_y > SH-self.rad or self.pos_y < self.rad:
+            self.dy *= -1
+        if self.pos_x < self.rad + 20:
+            self.col = arcade.color.BLUE
+        if self.pos_y < self.rad + 20:
+            self.col = arcade.color.RED
+        if self.pos_x > - self.rad - 20 + SW:
+            self.col = arcade.color.GREEN
+        if self.pos_y > - self.rad - 20 + SW:
+            self.col = arcade.color.CYAN
+
+class MyGame(arcade.Window):
+    def __init__(self,width,height,title):
+        super().__init__(width,height,title)
+        arcade.set_background_color(arcade.color.WHITE)
+
+        self.balls=[]
+        for i in range(1000):
+            r = random.randint(2,20)
+            x = random.randint(r,SW-r)
+            y = random.randint(r,SH-r)
+            dx = random.randint(-5,5)
+            dy = random.randint(-5,5)
+            col1 = random.randint(1,4)
+            if col1 == 1:
+                col1 = arcade.color.RED
+
+            if col1 == 2:
+                col1 = arcade.color.CYAN
+            if col1 == 3:
+                col1 = arcade.color.BLUE
+            if col1 == 4:
+                col1 = arcade.color.GREEN
+
+            arcade.draw_rectangle_filled(SW/2,10,SW,20,arcade.color.RED)
+            arcade.draw_rectangle_filled(10,SH/2,20,SH,arcade.color.BLUE)
+            arcade.draw_rectangle_filled(SW-10,SH/2,20,SH,arcade.color.GREEN)
+            arcade.draw_rectangle_filled(SW/2,SH-10,SW,20,arcade.color.CYAN)
+
+            #c=(random.randint(0,225),random.randint(0,255),random.randint(0,225))
+
+            self.ball = Ball(x,y,dx,dy,r,col1)
+            self.balls.append(self.ball)
+
+    def on_draw(self):
+        arcade.start_render()
+        for ball in self.balls:
+            ball.draw_ball()
+        arcade.draw_rectangle_filled(10, SH / 2, 20, SH, arcade.color.BLUE)
+        arcade.draw_rectangle_filled(SW - 10, SH / 2, 20, SH, arcade.color.GREEN)
+        arcade.draw_rectangle_filled(SW / 2, SH - 10, SW, 20, arcade.color.CYAN)
+        arcade.draw_rectangle_filled(SW / 2, 10, SW, 20, arcade.color.RED)
+
+    def on_update(self,dt):
+        for ball in self.balls:
+            ball.update_ball()
+
+def myprogram():
+    window = MyGame(SW,SH,"30 Boxes")
+    arcade.run()
+
+
+if __name__ == "__main__":
+    myprogram()
