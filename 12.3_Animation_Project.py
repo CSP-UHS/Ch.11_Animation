@@ -18,9 +18,7 @@ class Flake:
 
     def draw_flake(self):
         arcade.draw_rectangle_filled(55, 55, 80, 40, arcade.color.DARK_GREEN)
-        #arcade.draw_rectangle_filled(55, 55, 10, 10, arcade.color.DARK_GREEN)
         arcade.draw_rectangle_filled(self.x, self.y, self.rad, 5, self.col)
-
         arcade.draw_triangle_filled(self.x, self.y, 20, 30, 40, 50, arcade.color.RED)
     def update_flake(self):
         self.y += self.dy
@@ -53,8 +51,7 @@ class MyGame(arcade.Window):
         arcade.draw_rectangle_filled(SW, SH//2, 20, SH, arcade.color.GREEN)
         arcade.draw_rectangle_filled(BW//2, SH//2, BW, SH, arcade.color.GREEN)
         arcade.draw_rectangle_filled(SW//2, 3, SW, 25, arcade.color.GREEN)
-        arcade.draw_rectangle_filled(SW//2, 600, SW, 25, arcade.color.GREEN) #reverse this
-        #arcade.draw_rectangle_filled(SW//2, SH//2, SW, 10, arcade.color.WHITE_SMOKE)
+        arcade.draw_rectangle_filled(SW//2, 600, SW, 25, arcade.color.GREEN)
 
     def on_update(self, dt):
         for flake in self.flakelist:
