@@ -29,7 +29,7 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.WHITE_SMOKE)
         self.balls = []
-        for i in range(10000):
+        for i in range(10):
             r = random.randint(2, 20)
             x = random.randint(r, SW - r)
             y = random.randint(r, SH - r)
@@ -41,9 +41,7 @@ class MyGame(arcade.Window):
         arcade.start_render()
         for ball in self.balls:
             ball.draw_ball()
-        #self.ball.draw_ball()
     def on_update(self, dt):
-        #self.ball.update_ball()
         for ball in self.balls:
             ball.update_ball()
 
