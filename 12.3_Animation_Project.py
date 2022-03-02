@@ -1,9 +1,4 @@
-'''
-ANIMATION PROJECT
------------------
-Your choice!!! Have fun and be creative.
 
-'''
 import arcade
 import random
 
@@ -18,34 +13,43 @@ class Flake:
         self.dy = dy
         self.rad = r
         self.col = c
+        # for second object
+        self.x2 = x
+        self.y2 = y
+        self.dy2 = dy
+        self.rad2 = r
+        self.col2 = c
 
     def draw_flake(self):
-        # draw the stuff right here
         arcade.draw_circle_filled(self.x, self.y, self.rad, self.col)
+        arcade.draw_circle_filled(self.x2, self.y2, 15, arcade.color.GOLD)
 
     def update_flake(self):
         self.y += self.dy
-
         if self.y <= -self.rad:
             self.y = random.randint(SH, SH+100)
             self.x = random.randint(0, SW)
-
+    def update_enm(self):
+        self.y2 += self.dy
+        if self.y2 <= -self.rad:
+            self.y2 = random.randint(SH, SH+100)
+            self.x2 = random.randint(0, SW)
 class MyGame(arcade.Window):
     def __init__(self, SW, SH, title):
         super().__init__(SW, SH, title)
-        arcade.set_background_color(arcade.color.BLACK)
-        self.flakelist = []
+        arcade.set_background_color(arcade.color.SKY_BLUE)
+        self.flakelist = []    #  hold all snow flake
         #   create flake
         for i in range(FN):
-            r = random.randint(1, 4)
+            r = random.randint(10, 20)
             dy = random.randint(-4, -1)
             x = random.randint(0, SW)
             y = random.randint(0, SH)
 
             if i == 0:
-                c = arcade.color.RED
+                c = arcade.color.NAVY_BLUE
             else:
-                c = arcade.color.WHITE
+                c = arcade.color.NAVY_BLUE
             make_flake = Flake(x, y, dy, r, c)
             self.flakelist.append(make_flake)
 
@@ -67,3 +71,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
