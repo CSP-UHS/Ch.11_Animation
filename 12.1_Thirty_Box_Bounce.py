@@ -30,57 +30,89 @@ import random
 SW = 600
 SH = 600
 
-class Ball():
-    def __init__(self, pos_x, pos_y, dx, dy, rad, col):
+
+class Box():
+    def __init__(self, pos_x, pos_y, dx, dy, width, height, col):
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.dx = dx
         self.dy = dy
-        self.rad = rad
+        self.width = width
+        self.height = height
         self.col = col
 
-    def draw_ball(self):
-        arcade.draw_circle_filled(self.pos_x, self.pos_y, self.rad, self.col)
+    def draw_box(self):
+        arcade.draw_rectangle_filled(self.pos_x, self.pos_y, self.width, self.height, self.col)
 
-    def update_ball(self):
+    def update_box(self):
         self.pos_x += self.dx
         self.pos_y += self.dy
+        rad = random.randint(1, 3)
+        x = random.randint(0, 600)
+        y = random.randint(0, 600)
+        dx = 0
+        dy = random.randint(-4, -1)
+        c = arcade.color.WHITE
 
-        #bounce ball off of walls
-        if self.pos_x > SW-self.rad or self.pos_x < self.rad:
-            self.dx *= -3
-        if self.pos_y > SH - self.rad or self.pos_y < self.rad:
+        #bounce box off of walls
+        if self.pos_x > SW-self.width or self.pos_x < self.width:
+            self.dx *= -1
+        if self.pos_y > SH - self.height or self.pos_y < self.height:
             self.dy *= -1
+        if self.dx == 0:
+            self.dx += 1
+        if self.dy == 0:
+            self.dy += 1
+
+        #box color change
+        if self.pos_x > SW-self.width:
+            self.col = arcade.color.BLUE
+        if self.pos_x < self.width:
+            self.col = arcade.color.RED
+        if self.pos_y > SH - self.height:
+            self.col = arcade.color.GREEN
+        if self.pos_y < self.height:
+            self.col = arcade.color.YELLOW
 
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
-        arcade.set_background_color(arcade.color.ARYLIDE_YELLOW)
-        self.balls = []
-        for i in range(275):
-            r = random.randint(2, 20)
-            x = random.randint(r, SW-r)
-            y = random.randint(r, SH - r)
+        arcade.set_background_color(arcade.color.WHITE)
+        self.boxes = []
+
+        for i in range(30):
+            wid = random.randint(10, 50)
+            hei = wid
+            x = random.randint(wid, SW-wid)
+            y = random.randint(hei, SH - hei)
             dx = random.randint(-3, 3)
             dy = random.randint(-3, 3)
-            c = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
+            c = arcade.color.BLACK
 
-            ball = Ball(x, y, dx, dy, r, c)
-            self.balls.append(ball)
+            box = Box(x, y, dx, dy, wid, hei, c)
+
+            self.boxes.append(box)
     def on_draw(self):
         arcade.start_render()
-        for ball in self.balls:
-            ball.draw_ball()
+        arcade.draw_line(0, 0, 600, 0, arcade.color.YELLOW, 30)
+        arcade.draw_line(0, 0, 0, 600, arcade.color.RED, 30)
+        arcade.draw_line(0, 600, 600, 600, arcade.color.GREEN, 30)
+        arcade.draw_line(600, 0, 600, 600, arcade.color.BLUE, 30)
+
+        for box in self.boxes:
+            box.draw_box()
 
     def on_update(self, dt):
-        for ball in self.balls:
-            ball.update_ball()
+        for box in self.boxes:
+            box.update_box()
+
 
 
 
 def myprogram():
-    window = MyGame(SW, SH, "Test")
+    window = MyGame(SW, SH, "30 boxes")
+
     arcade.run()
 
 if __name__ == "__main__":
