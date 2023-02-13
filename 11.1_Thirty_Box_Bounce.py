@@ -28,6 +28,12 @@ SW = 600
 SH = 600
 
 
+c1 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) #Right Wall
+c2 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) #Left Wall
+c3 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) #Top Wall
+c4 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) #Bottom Wall
+
+
 class Square():
 
     def __init__(self,pos_x,pos_y,dx,dy,w,h,col):
@@ -54,10 +60,20 @@ class Square():
     # D = derivative or velocity in direction
     #bounce ball off edge of screens
 
-        if self.pos_x <(self.h/2)+30 or self.pos_x > SW - (self.h/2)-30:
+        if self.pos_x <(self.h/2)+30: #left wall
             self.dx*=-1
-        if self.pos_y < (self.h/2)+30 or self.pos_y > SH - (self.h/2)-30:
+            self.col = c2
+        elif self.pos_x > SW - (self.h/2)-30: #Right Wall
+            self.dx*=-1
+            self.col = c1
+        elif self.pos_y < (self.h/2)+30: #Bottom wall
+            self.dy*=-1
+            self.col = c4
+
+        elif self.pos_y > SH - (self.h/2)-30: #Top Wall
             self.dy *= -1
+            self.col = c3
+
 
 
 class MyGame(arcade.Window):
@@ -66,10 +82,10 @@ class MyGame(arcade.Window):
         super().__init__(width,height,title)
         c = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
         arcade.set_background_color(c)
-        self.c1 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        self.c2 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        self.c3 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        self.c4 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        # self.c1 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) #Right Wall
+        # self.c2 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) #Left Wall
+        # self.c3 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) #Top Wall
+        # self.c4 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) #Bottom Wall
 
         self.box_list=[]
         for i in range(30):
@@ -89,10 +105,10 @@ class MyGame(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_rectangle_filled(585, 300, 30, 540, self.c1)
-        arcade.draw_rectangle_filled(15, 300, 30, 540, self.c2)
-        arcade.draw_rectangle_filled(300, 585, 30, 540, self.c3, 90)
-        arcade.draw_rectangle_filled(300, 15, 30, 540, self.c4, 90)
+        arcade.draw_rectangle_filled(585, 300, 30, 540, c1)
+        arcade.draw_rectangle_filled(15, 300, 30, 540, c2)
+        arcade.draw_rectangle_filled(300, 585, 30, 540, c3, 90)
+        arcade.draw_rectangle_filled(300, 15, 30, 540, c4, 90)
 
         for item in (self.box_list):
             item.draw_square()
